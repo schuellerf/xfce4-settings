@@ -128,7 +128,15 @@ xfwm_settings_active_frame_drag_data (GtkWidget        *widget,
                                       guint             info,
                                       guint             timestamp,
                                       gpointer         *user_data);
-
+static void
+xfwm_settings_hidden_frame_drag_data (GtkWidget        *widget,
+                                      GdkDragContext   *drag_context,
+                                      gint              x,
+                                      gint              y,
+                                      GtkSelectionData *data,
+                                      guint             info,
+                                      guint             timestamp,
+                                      gpointer         *user_data);
 static GdkPixbuf *
 xfwm_settings_create_icon_from_widget (GtkWidget *widget);
 
@@ -393,7 +401,7 @@ xfwm_settings_save_button_layout (GtkBuilder *builder)
   gint          i;
   GtkContainer *container;
 
-  container = (GtkContainer *)gtk_builder_get_object (builder, "active-frame");
+  container = (GtkContainer *)gtk_builder_get_object (builder, "active-box");
   children = gtk_container_get_children (container);
 
   key_chars = g_new0 (const char *, g_list_length (children) + 1);
@@ -405,9 +413,8 @@ xfwm_settings_save_button_layout (GtkBuilder *builder)
   }
 
   value = g_strjoinv ("", (gchar **) key_chars);
-  g_debug("%s", value);
 
-  //xfconf_channel_set_string (xfwm4_channel, "/general/button_layout", value);
+  xfconf_channel_set_string (xfwm4_channel, "/general/button_layout", value);
 
   g_list_free (children);
   g_free (key_chars);
@@ -1242,10 +1249,8 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 
         gtk_drag_dest_set (hidden_frame, GTK_DEST_DEFAULT_ALL, target_entry, 1, GDK_ACTION_MOVE);
 
-#if 0
         g_signal_connect (hidden_frame, "drag-data-received",
-                          G_CALLBACK (xfwm_settings_hidden_frame_drag_data), settings);
-#endif
+                          G_CALLBACK (xfwm_settings_hidden_frame_drag_data), builder);
 
         children = gtk_container_get_children (GTK_CONTAINER (active_box));
         for (list_iter = children; list_iter != NULL; list_iter = g_list_next (list_iter))
@@ -1262,7 +1267,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
             }
 
             g_object_set_data (object, "key_char", (gpointer) &name[strlen (name) - 1]);
-            g_debug("%s", (char *)g_object_get_data (object, "key_char"));
             gtk_drag_source_set (GTK_WIDGET(object), GDK_BUTTON1_MASK, &target_entry[1], 1, GDK_ACTION_MOVE);
 
             g_signal_connect (object, "drag_data_get",
@@ -1286,7 +1290,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
             name = gtk_buildable_get_name (GTK_BUILDABLE (object));
 
             g_object_set_data (object, "key_char", (gpointer) &name[strlen (name) - 1]);
-            g_debug("%s", &name[strlen(name)-1]);
             gtk_drag_source_set (GTK_WIDGET (object), GDK_BUTTON1_MASK, &target_entry[0], 1, GDK_ACTION_MOVE);
 
               g_signal_connect (object, "drag_data_get",
@@ -1638,6 +1641,35 @@ xfwm_settings_active_frame_drag_data (GtkWidget        *widget,
     g_list_free (children);
 
     gtk_box_reorder_child (GTK_BOX (active_box), source, i);
+
+    xfwm_settings_save_button_layout (builder);
+}
+
+static void
+xfwm_settings_hidden_frame_drag_data (GtkWidget        *widget,
+                                      GdkDragContext   *drag_context,
+                                      gint              x,
+                                      gint              y,
+                                      GtkSelectionData *data,
+                                      guint             info,
+                                      guint             timestamp,
+                                      gpointer         *user_data)
+{
+    GtkWidget *source;
+    GtkWidget *parent;
+    GtkWidget *hidden_box;
+    GtkBuilder*builder = GTK_BUILDER (user_data);
+
+    source = GTK_WIDGET (gtk_builder_get_object (builder,
+                                (const gchar *)gtk_selection_data_get_data (data)));
+    parent = gtk_widget_get_parent (source);
+
+    hidden_box = GTK_WIDGET (gtk_builder_get_object (builder, "hidden-box"));
+
+    g_object_ref (source);
+    gtk_container_remove (GTK_CONTAINER (parent), source);
+    gtk_box_pack_start (GTK_BOX (hidden_box), source, info == 3, info == 3, 0);
+    g_object_unref (source);
 
     xfwm_settings_save_button_layout (builder);
 }
