@@ -33,6 +33,7 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
+#include <gdk/gdkx.h>
 
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
@@ -41,6 +42,7 @@
 #include "appearance-dialog_ui.h"
 #include "images.h"
 
+#define XFWM4_WM_NAME                   "Xfwm4"
 #define XFWM4_DEFAULT_THEME             "Default"
 
 #define INCH_MM      25.4
@@ -1175,141 +1177,151 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     const gchar        *name;
 
     /* xfwm4 themes */
-    object = gtk_builder_get_object (builder, "xfwm4_theme_treeview");
-
-    list_store = gtk_list_store_new (N_XFWM4_THEME_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
-    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), XFWM4_THEME_COLUMN_NAME, GTK_SORT_ASCENDING);
-    gtk_tree_view_set_model (GTK_TREE_VIEW (object), GTK_TREE_MODEL (list_store));
-    renderer = gtk_cell_renderer_text_new ();
-    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (object), 0, "", renderer, "text", XFWM4_THEME_COLUMN_NAME, NULL);
-
-    appearance_settings_load_xfwm4_themes (list_store, GTK_TREE_VIEW (object));
-
-    g_object_unref (G_OBJECT (list_store));
-
-    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (object));
-    gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
-    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_xfwm_theme_tree_selection_changed), builder);
-
-    title_font_button = GTK_WIDGET (gtk_builder_get_object (builder, "title_font_button"));
-    xfconf_g_property_bind (xfwm4_channel,
-                            "/general/title_font", G_TYPE_STRING,
-                            title_font_button, "font-name");
-
-    title_align_combo = GTK_WIDGET (gtk_builder_get_object (builder, "title_align_combo"));
-    gtk_cell_layout_clear (GTK_CELL_LAYOUT (title_align_combo));
-
-    renderer = gtk_cell_renderer_text_new ();
-    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (title_align_combo), renderer, TRUE);
-    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (title_align_combo), renderer, "text", 0);
-
-    list_store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
-    gtk_combo_box_set_model (GTK_COMBO_BOX (title_align_combo), GTK_TREE_MODEL (list_store));
-
-    for (template = title_align_values; template->name != NULL; ++template)
+    if (strcmp(XFWM4_WM_NAME, gdk_x11_screen_get_window_manager_name (
+gdk_screen_get_default ())))
     {
-        gtk_list_store_append (list_store, &iter);
-        gtk_list_store_set (list_store, &iter, 0, _(template->name), 1, template->value, -1);
+        g_debug ("xfwm4 not running, wm: %s", gdk_x11_screen_get_window_manager_name ( gdk_screen_get_default ()));
+        object = gtk_builder_get_object (builder, "xfwm4_theme_hbox");
+        gtk_widget_destroy (GTK_WIDGET (object));
     }
-    g_object_unref (G_OBJECT (list_store));
-
-    xfconf_channel_get_property (xfwm4_channel, "/general/title_alignment", &value);
-    appearance_settings_dialog_channel_property_changed (xfwm4_channel, "/general/title_alignment", &value, builder);
-    g_value_unset (&value);
-
-    g_signal_connect (title_align_combo, "changed",
-                      G_CALLBACK (cb_xfwm_title_alignment_changed), NULL);
-
-    /* Style tab: button layout */
+    else
     {
+        object = gtk_builder_get_object (builder, "xfwm4_theme_treeview");
 
-        active_frame = GTK_WIDGET (gtk_builder_get_object (builder, "active-frame"));
-        hidden_frame = GTK_WIDGET (gtk_builder_get_object (builder, "hidden-frame"));
-        active_box = GTK_WIDGET (gtk_builder_get_object (builder, "active-box"));
-        hidden_box = GTK_WIDGET (gtk_builder_get_object (builder, "hidden-box"));
+        list_store = gtk_list_store_new (N_XFWM4_THEME_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
+        gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store), XFWM4_THEME_COLUMN_NAME, GTK_SORT_ASCENDING);
+        gtk_tree_view_set_model (GTK_TREE_VIEW (object), GTK_TREE_MODEL (list_store));
+        renderer = gtk_cell_renderer_text_new ();
+        gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (object), 0, "", renderer, "text", XFWM4_THEME_COLUMN_NAME, NULL);
 
-        target_entry[0].target = "_xfwm4_button_layout";
-        target_entry[0].flags = 0;
-        target_entry[0].info = 2;
+        appearance_settings_load_xfwm4_themes (list_store, GTK_TREE_VIEW (object));
 
-        target_entry[1].target = "_xfwm4_active_layout";
-        target_entry[1].flags = 0;
-        target_entry[1].info = 3;
+        g_object_unref (G_OBJECT (list_store));
 
-        gtk_drag_dest_set (active_frame, GTK_DEST_DEFAULT_ALL, target_entry, 2, GDK_ACTION_MOVE);
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (object));
+        gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+        g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_xfwm_theme_tree_selection_changed), builder);
 
-        g_signal_connect (active_frame, "drag-data-received",
-                          G_CALLBACK (xfwm_settings_active_frame_drag_data), builder);
-#if 0
-        g_signal_connect (active_frame, "drag-motion",
-                          G_CALLBACK (xfwm_settings_active_frame_drag_motion), builder);
-        g_signal_connect (active_frame, "drag-leave",
-                          G_CALLBACK (xfwm_settings_active_frame_drag_leave), builder);
-#endif
+        title_font_button = GTK_WIDGET (gtk_builder_get_object (builder, "title_font_button"));
+        xfconf_g_property_bind (xfwm4_channel,
+                                "/general/title_font", G_TYPE_STRING,
+                                title_font_button, "font-name");
 
-        gtk_drag_dest_set (hidden_frame, GTK_DEST_DEFAULT_ALL, target_entry, 1, GDK_ACTION_MOVE);
+        title_align_combo = GTK_WIDGET (gtk_builder_get_object (builder, "title_align_combo"));
+        gtk_cell_layout_clear (GTK_CELL_LAYOUT (title_align_combo));
 
-        g_signal_connect (hidden_frame, "drag-data-received",
-                          G_CALLBACK (xfwm_settings_hidden_frame_drag_data), builder);
+        renderer = gtk_cell_renderer_text_new ();
+        gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (title_align_combo), renderer, TRUE);
+        gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (title_align_combo), renderer, "text", 0);
 
-        children = gtk_container_get_children (GTK_CONTAINER (active_box));
-        for (list_iter = children; list_iter != NULL; list_iter = g_list_next (list_iter))
+        list_store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+        gtk_combo_box_set_model (GTK_COMBO_BOX (title_align_combo), GTK_TREE_MODEL (list_store));
+
+        for (template = title_align_values; template->name != NULL; ++template)
         {
-            object = list_iter->data;
-            name = gtk_buildable_get_name (GTK_BUILDABLE (object));
-
-            if (name[strlen (name) - 1] == '|')
-            {
-                g_signal_connect (title_align_combo, "changed",
-                                  G_CALLBACK (cb_xfwm_title_button_alignment_changed), object);
-                cb_xfwm_title_button_alignment_changed (GTK_COMBO_BOX (title_align_combo),
-                                                              GTK_WIDGET (object));
-            }
-
-            g_object_set_data (object, "key_char", (gpointer) &name[strlen (name) - 1]);
-            gtk_drag_source_set (GTK_WIDGET(object), GDK_BUTTON1_MASK, &target_entry[1], 1, GDK_ACTION_MOVE);
-
-            g_signal_connect (object, "drag_data_get",
-                              G_CALLBACK (cb_xfwm_title_button_drag_data), NULL);
-            g_signal_connect (object, "drag_begin", G_CALLBACK (cb_xfwm_title_button_drag_begin),
-                              NULL);
-            g_signal_connect (object, "drag_end", G_CALLBACK (cb_xfwm_title_button_drag_end),
-                              NULL);
-            g_signal_connect (object, "button_press_event",
-                              G_CALLBACK (cb_appearance_settings_signal_blocker), NULL);
-            g_signal_connect (object, "enter_notify_event",
-                              G_CALLBACK (cb_appearance_settings_signal_blocker), NULL);
-            g_signal_connect (object, "focus",  G_CALLBACK (cb_appearance_settings_signal_blocker), NULL);
+            gtk_list_store_append (list_store, &iter);
+            gtk_list_store_set (list_store, &iter, 0, _(template->name), 1, template->value, -1);
         }
-        g_list_free (children);
+        g_object_unref (G_OBJECT (list_store));
 
-        children = gtk_container_get_children (GTK_CONTAINER (hidden_box));
-        for (list_iter = children; list_iter != NULL; list_iter = g_list_next (list_iter))
-        {
-            object = list_iter->data;
-            name = gtk_buildable_get_name (GTK_BUILDABLE (object));
-
-            g_object_set_data (object, "key_char", (gpointer) &name[strlen (name) - 1]);
-            gtk_drag_source_set (GTK_WIDGET (object), GDK_BUTTON1_MASK, &target_entry[0], 1, GDK_ACTION_MOVE);
-
-              g_signal_connect (object, "drag_data_get",
-                                G_CALLBACK (cb_xfwm_title_button_drag_data), NULL);
-              g_signal_connect (object, "drag_begin", G_CALLBACK (cb_xfwm_title_button_drag_begin),
-                                NULL);
-              g_signal_connect (object, "drag_end", G_CALLBACK (cb_xfwm_title_button_drag_end),
-                                NULL);
-              g_signal_connect (object, "button_press_event",
-                                G_CALLBACK (cb_appearance_settings_signal_blocker), NULL);
-              g_signal_connect (object, "enter_notify_event",
-                                G_CALLBACK (cb_appearance_settings_signal_blocker), NULL);
-              g_signal_connect (object, "focus",  G_CALLBACK (cb_appearance_settings_signal_blocker), NULL);
-        }
-        g_list_free (children);
-
-        xfconf_channel_get_property (xfwm4_channel, "/general/button_layout", &value);
-        appearance_settings_dialog_channel_property_changed(xfwm4_channel,
-                                                            "/general/button_layout", &value, builder);
+        xfconf_channel_get_property (xfwm4_channel, "/general/title_alignment", &value);
+        appearance_settings_dialog_channel_property_changed (xfwm4_channel, "/general/title_alignment", &value, builder);
         g_value_unset (&value);
+
+        g_signal_connect (title_align_combo, "changed",
+                          G_CALLBACK (cb_xfwm_title_alignment_changed), NULL);
+
+        /* Style tab: button layout */
+        {
+
+            active_frame = GTK_WIDGET (gtk_builder_get_object (builder, "active-frame"));
+            hidden_frame = GTK_WIDGET (gtk_builder_get_object (builder, "hidden-frame"));
+            active_box = GTK_WIDGET (gtk_builder_get_object (builder, "active-box"));
+            hidden_box = GTK_WIDGET (gtk_builder_get_object (builder, "hidden-box"));
+
+            target_entry[0].target = "_xfwm4_button_layout";
+            target_entry[0].flags = 0;
+            target_entry[0].info = 2;
+
+            target_entry[1].target = "_xfwm4_active_layout";
+            target_entry[1].flags = 0;
+            target_entry[1].info = 3;
+
+            gtk_drag_dest_set (active_frame, GTK_DEST_DEFAULT_ALL, target_entry, 2, GDK_ACTION_MOVE);
+
+            g_signal_connect (active_frame, "drag-data-received",
+                              G_CALLBACK (xfwm_settings_active_frame_drag_data), builder);
+    #if 0
+            g_signal_connect (active_frame, "drag-motion",
+                              G_CALLBACK (xfwm_settings_active_frame_drag_motion), builder);
+            g_signal_connect (active_frame, "drag-leave",
+                              G_CALLBACK (xfwm_settings_active_frame_drag_leave), builder);
+    #endif
+
+            gtk_drag_dest_set (hidden_frame, GTK_DEST_DEFAULT_ALL, target_entry, 1, GDK_ACTION_MOVE);
+
+            g_signal_connect (hidden_frame, "drag-data-received",
+                              G_CALLBACK (xfwm_settings_hidden_frame_drag_data), builder);
+
+            children = gtk_container_get_children (GTK_CONTAINER (active_box));
+            for (list_iter = children; list_iter != NULL; list_iter = g_list_next (list_iter))
+            {
+                object = list_iter->data;
+                name = gtk_buildable_get_name (GTK_BUILDABLE (object));
+
+                if (name[strlen (name) - 1] == '|')
+                {
+                    g_signal_connect (title_align_combo, "changed",
+                                      G_CALLBACK (cb_xfwm_title_button_alignment_changed), object);
+                    cb_xfwm_title_button_alignment_changed (GTK_COMBO_BOX (title_align_combo),
+                                                                  GTK_WIDGET (object));
+                }
+
+                g_object_set_data (object, "key_char", (gpointer) &name[strlen (name) - 1]);
+                gtk_drag_source_set (GTK_WIDGET(object), GDK_BUTTON1_MASK, &target_entry[1], 1, GDK_ACTION_MOVE);
+
+                g_signal_connect (object, "drag_data_get",
+                                  G_CALLBACK (cb_xfwm_title_button_drag_data), NULL);
+                g_signal_connect (object, "drag_begin", G_CALLBACK (cb_xfwm_title_button_drag_begin),
+                                  NULL);
+                g_signal_connect (object, "drag_end", G_CALLBACK (cb_xfwm_title_button_drag_end),
+                                  NULL);
+                g_signal_connect (object, "button_press_event",
+                                  G_CALLBACK (cb_appearance_settings_signal_blocker), NULL);
+                g_signal_connect (object, "enter_notify_event",
+                                  G_CALLBACK (cb_appearance_settings_signal_blocker), NULL);
+                g_signal_connect (object, "focus",  G_CALLBACK (cb_appearance_settings_signal_blocker), NULL);
+            }
+            g_list_free (children);
+
+            children = gtk_container_get_children (GTK_CONTAINER (hidden_box));
+            for (list_iter = children; list_iter != NULL; list_iter = g_list_next (list_iter))
+            {
+                object = list_iter->data;
+                name = gtk_buildable_get_name (GTK_BUILDABLE (object));
+
+                g_object_set_data (object, "key_char", (gpointer) &name[strlen (name) - 1]);
+                gtk_drag_source_set (GTK_WIDGET (object), GDK_BUTTON1_MASK, &target_entry[0], 1, GDK_ACTION_MOVE);
+
+                  g_signal_connect (object, "drag_data_get",
+                                    G_CALLBACK (cb_xfwm_title_button_drag_data), NULL);
+                  g_signal_connect (object, "drag_begin", G_CALLBACK (cb_xfwm_title_button_drag_begin),
+                                    NULL);
+                  g_signal_connect (object, "drag_end", G_CALLBACK (cb_xfwm_title_button_drag_end),
+                                    NULL);
+                  g_signal_connect (object, "button_press_event",
+                                    G_CALLBACK (cb_appearance_settings_signal_blocker), NULL);
+                  g_signal_connect (object, "enter_notify_event",
+                                    G_CALLBACK (cb_appearance_settings_signal_blocker), NULL);
+                  g_signal_connect (object, "focus",  G_CALLBACK (cb_appearance_settings_signal_blocker), NULL);
+            }
+            g_list_free (children);
+
+            xfconf_channel_get_property (xfwm4_channel, "/general/button_layout", &value);
+            appearance_settings_dialog_channel_property_changed(xfwm4_channel,
+                                                                "/general/button_layout", &value, builder);
+            g_value_unset (&value);
+        }
     }
 
     /* Icon themes list */
