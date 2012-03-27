@@ -1177,10 +1177,9 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     const gchar        *name;
 
     /* xfwm4 themes */
-    if (strcmp(XFWM4_WM_NAME, gdk_x11_screen_get_window_manager_name (
-gdk_screen_get_default ())))
+    if (strcmp(XFWM4_WM_NAME, gdk_x11_screen_get_window_manager_name ( gdk_screen_get_default ())))
     {
-        g_debug ("xfwm4 not running, wm: %s", gdk_x11_screen_get_window_manager_name ( gdk_screen_get_default ()));
+        DBG ("xfwm4 not running, wm: %s", gdk_x11_screen_get_window_manager_name ( gdk_screen_get_default ()));
         object = gtk_builder_get_object (builder, "xfwm4_theme_hbox");
         gtk_widget_destroy (GTK_WIDGET (object));
     }
