@@ -438,7 +438,7 @@ xfce_keyboard_settings_constructed (GObject *object)
   button = gtk_builder_get_object (GTK_BUILDER (settings), "reset_shortcuts_button");
   g_signal_connect_swapped (button, "clicked", G_CALLBACK (xfce_keyboard_settings_reset_button_clicked), settings);
 
-  if (!strcmp(XFWM4_WM_NAME, gdk_x11_screen_get_window_manager_name ( gdk_screen_get_default ())))
+  if (strcmp(XFWM4_WM_NAME, gdk_x11_screen_get_window_manager_name ( gdk_screen_get_default ())))
   {
     DBG ("xfwm4 not running, wm: %s", gdk_x11_screen_get_window_manager_name ( gdk_screen_get_default ()));
     object = gtk_builder_get_object (GTK_BUILDER (settings), "xfwm4_shortcuts_frame");
