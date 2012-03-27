@@ -45,6 +45,8 @@
 #include <libxklavier/xklavier.h>
 #endif /* HAVE_LIBXKLAVIER */
 
+#define XFWM4_WM_NAME                   "Xfwm4"
+
 #define CUSTOM_BASE_PROPERTY         "/commands/custom"
 
 #define SHORTCUTS_NAME_COLUMN     0 
@@ -436,39 +438,49 @@ xfce_keyboard_settings_constructed (GObject *object)
   button = gtk_builder_get_object (GTK_BUILDER (settings), "reset_shortcuts_button");
   g_signal_connect_swapped (button, "clicked", G_CALLBACK (xfce_keyboard_settings_reset_button_clicked), settings);
 
-  /* Configure xfwm shortcuts tree view */
-  xfwm_shortcuts_view = gtk_builder_get_object (GTK_BUILDER (settings), "xfwm_shortcuts_view");
-  gtk_tree_selection_set_mode (gtk_tree_view_get_selection (GTK_TREE_VIEW (xfwm_shortcuts_view)), GTK_SELECTION_MULTIPLE);
-  g_signal_connect (xfwm_shortcuts_view, "row-activated", G_CALLBACK (xfwm_settings_shortcut_row_activated), settings);
+  if (!strcmp(XFWM4_WM_NAME, gdk_x11_screen_get_window_manager_name ( gdk_screen_get_default ())))
+  {
+    DBG ("xfwm4 not running, wm: %s", gdk_x11_screen_get_window_manager_name ( gdk_screen_get_default ()));
+    object = gtk_builder_get_object (GTK_BUILDER (settings), "xfwm4_shortcuts_frame");
+    gtk_widget_destroy (GTK_WIDGET (object));
+  }
+  else
+  {
+    /* Configure xfwm shortcuts tree view */
+    xfwm_shortcuts_view = gtk_builder_get_object (GTK_BUILDER (settings), "xfwm_shortcuts_view");
+    gtk_tree_selection_set_mode (gtk_tree_view_get_selection (GTK_TREE_VIEW (xfwm_shortcuts_view)), GTK_SELECTION_MULTIPLE);
+    g_signal_connect (xfwm_shortcuts_view, "row-activated", G_CALLBACK (xfwm_settings_shortcut_row_activated), settings);
 
-  /* Create list store for xfwm keyboard shortcuts */
-  list_store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-  gtk_tree_view_set_model (GTK_TREE_VIEW (xfwm_shortcuts_view), GTK_TREE_MODEL (list_store));
-  g_object_unref (G_OBJECT (list_store));
+    /* Create list store for xfwm keyboard shortcuts */
+    list_store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+    gtk_tree_view_set_model (GTK_TREE_VIEW (xfwm_shortcuts_view), GTK_TREE_MODEL (list_store));
+    g_object_unref (G_OBJECT (list_store));
 
-  /* Connect to xfwm clear button */
-  button = gtk_builder_get_object (GTK_BUILDER (settings), "clear_xfwm_shortcuts_button");
-  g_signal_connect_swapped (button, "clicked", G_CALLBACK (xfwm_settings_shortcut_clear_clicked), settings);
+    /* Connect to xfwm clear button */
+    button = gtk_builder_get_object (GTK_BUILDER (settings), "clear_xfwm_shortcuts_button");
+    g_signal_connect_swapped (button, "clicked", G_CALLBACK (xfwm_settings_shortcut_clear_clicked), settings);
 
-  /* Create action column */
-  renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("Action"), renderer, "text", SHORTCUTS_NAME_COLUMN, NULL);
-  gtk_tree_view_append_column (GTK_TREE_VIEW (xfwm_shortcuts_view), column);
+    /* Create action column */
+    renderer = gtk_cell_renderer_text_new ();
+    column = gtk_tree_view_column_new_with_attributes (_("Action"), renderer, "text", SHORTCUTS_NAME_COLUMN, NULL);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (xfwm_shortcuts_view), column);
 
-  /* Create shortcut column */
-  renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("Shortcut"), renderer, "text", SHORTCUTS_SHORTCUT_COLUMN, NULL);
-  gtk_tree_view_append_column (GTK_TREE_VIEW (xfwm_shortcuts_view), column);
+    /* Create shortcut column */
+    renderer = gtk_cell_renderer_text_new ();
+    column = gtk_tree_view_column_new_with_attributes (_("Shortcut"), renderer, "text", SHORTCUTS_SHORTCUT_COLUMN, NULL);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (xfwm_shortcuts_view), column);
 
-  /* Connect to xfwm reset button */
-  button = gtk_builder_get_object (GTK_BUILDER (settings), "reset_xfwm_shortcuts_button");
-  g_signal_connect_swapped (button, "clicked", G_CALLBACK (xfwm_settings_shortcut_reset_clicked), settings);
+    /* Connect to xfwm reset button */
+    button = gtk_builder_get_object (GTK_BUILDER (settings), "reset_xfwm_shortcuts_button");
+    g_signal_connect_swapped (button, "clicked", G_CALLBACK (xfwm_settings_shortcut_reset_clicked), settings);
+
+    xfwm_settings_initialize_shortcuts (settings);
+    xfwm_settings_reload_shortcuts (settings);
+  }
 
   xfce_keyboard_settings_initialize_shortcuts (settings);
   xfce_keyboard_settings_load_shortcuts (settings);
 
-  xfwm_settings_initialize_shortcuts (settings);
-  xfwm_settings_reload_shortcuts (settings);
 
 #ifdef HAVE_LIBXKLAVIER
   /* Init xklavier engine */

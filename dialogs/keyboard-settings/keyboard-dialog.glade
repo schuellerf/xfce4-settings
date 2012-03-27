@@ -629,7 +629,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkFrame" id="frame9">
+                  <object class="GtkFrame" id="xfwm4_shortcuts_frame">
                     <property name="visible">True</property>
                     <property name="border_width">12</property>
                     <property name="label_xalign">0</property>
