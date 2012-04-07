@@ -54,27 +54,6 @@
 /* Increase this number if new gtk settings have been added */
 #define INITIALIZE_UINT (1)
 
-typedef void (*appearance_settings_VOID_POINTER_POINTER_FUNC)(gpointer, gpointer);
-
-typedef struct _ThreadPayload ThreadPayload;
-
-struct _ThreadPayload
-{
-    gpointer userdata1;
-    gpointer userdata2;
-
-    appearance_settings_VOID_POINTER_POINTER_FUNC function;
-};
-
-static void
-appearance_settings_launch_thread ( ThreadPayload *payload )
-{
-    payload->function (payload->userdata1, payload->userdata2);
-
-    /* Free payload... parent thread should have forgotten about it */
-    g_free (payload);
-}
-
 typedef struct _MenuTemplate     MenuTemplate;
 struct _MenuTemplate
 {
@@ -497,7 +476,6 @@ appearance_settings_load_xfwm4_themes (GtkListStore *list_store,
             {
               g_hash_table_insert (themes, g_strdup (file), GINT_TO_POINTER (1));
 
-              GDK_THREADS_ENTER();
               /* insert in the list store */
               gtk_list_store_append (list_store, &iter);
               gtk_list_store_set (list_store, &iter,
@@ -514,7 +492,6 @@ appearance_settings_load_xfwm4_themes (GtkListStore *list_store,
 
                   gtk_tree_path_free (path);
                 }
-              GDK_THREADS_LEAVE();
             }
 
           g_free (filename);
@@ -593,7 +570,6 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
                     /* Escape the comment, since tooltips are markup, not text */
                     comment_escaped = theme_comment ? g_markup_escape_text (theme_comment, -1) : NULL;
 
-                    GDK_THREADS_ENTER();
                     /* Append icon theme to the list store */
                     gtk_list_store_append (list_store, &iter);
                     gtk_list_store_set (list_store, &iter,
@@ -612,7 +588,6 @@ appearance_settings_load_icon_themes (GtkListStore *list_store,
                         gtk_tree_view_scroll_to_cell (tree_view, tree_path, NULL, TRUE, 0.5, 0);
                         gtk_tree_path_free (tree_path);
                     }
-                    GDK_THREADS_LEAVE();
                 }
             }
 
@@ -714,7 +689,6 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
                     comment_escaped = NULL;
                 }
 
-                GDK_THREADS_ENTER();
                 /* Append ui theme to the list store */
                 gtk_list_store_append (list_store, &iter);
                 gtk_list_store_set (list_store, &iter,
@@ -735,7 +709,6 @@ appearance_settings_load_ui_themes (GtkListStore *list_store,
                     gtk_tree_view_scroll_to_cell (tree_view, tree_path, NULL, TRUE, 0.5, 0);
                     gtk_tree_path_free (tree_path);
                 }
-                GDK_THREADS_LEAVE();
 
                 /* Free theme index filename */
                 g_free (index_filename);
@@ -1202,7 +1175,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     GValue              value = { 0, };
     GtkTargetEntry      target_entry[2];
     const gchar        *name;
-    ThreadPayload      *payload = NULL;
 
     /* xfwm4 themes */
     if (strcmp(XFWM4_WM_NAME, gdk_x11_screen_get_window_manager_name ( gdk_screen_get_default ())))
@@ -1221,12 +1193,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
         renderer = gtk_cell_renderer_text_new ();
         gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (object), 0, "", renderer, "text", XFWM4_THEME_COLUMN_NAME, NULL);
 
-        payload = g_new0 (ThreadPayload, 1);
-        payload->userdata1 = list_store;
-        payload->userdata2 = object;
-        payload->function = (appearance_settings_VOID_POINTER_POINTER_FUNC)appearance_settings_load_xfwm4_themes;
-
-        g_thread_create ((GThreadFunc)appearance_settings_launch_thread, payload, FALSE, NULL);
+        appearance_settings_load_xfwm4_themes (list_store, GTK_TREE_VIEW (object));
 
         g_object_unref (G_OBJECT (list_store));
 
@@ -1367,12 +1334,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     renderer = gtk_cell_renderer_text_new ();
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (object), 0, "", renderer, "text", COLUMN_THEME_DISPLAY_NAME, NULL);
 
-    payload = g_new0 (ThreadPayload, 1);
-    payload->userdata1 = list_store;
-    payload->userdata2 = object;
-    payload->function = (appearance_settings_VOID_POINTER_POINTER_FUNC)appearance_settings_load_icon_themes;
-
-    g_thread_create ((GThreadFunc)appearance_settings_launch_thread, payload, FALSE, NULL);
+    appearance_settings_load_icon_themes (list_store, GTK_TREE_VIEW (object));
 
     g_object_unref (G_OBJECT (list_store));
 
@@ -1396,12 +1358,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (object), 0, "", renderer, "text", COLUMN_THEME_DISPLAY_NAME, NULL);
 
-    payload = g_new0 (ThreadPayload, 1);
-    payload->userdata1 = list_store;
-    payload->userdata2 = object;
-    payload->function = (appearance_settings_VOID_POINTER_POINTER_FUNC)appearance_settings_load_ui_themes;
-
-    g_thread_create ((GThreadFunc)appearance_settings_launch_thread, payload, FALSE, NULL);
+    appearance_settings_load_ui_themes (list_store, GTK_TREE_VIEW (object));
 
     g_object_unref (G_OBJECT (list_store));
 
@@ -1524,9 +1481,6 @@ main (gint argc, gchar **argv)
 
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-
-    g_thread_init(NULL);
-    gdk_threads_init();
 
     /* initialize Gtk+ */
     if (!gtk_init_with_args (&argc, &argv, "", option_entries, GETTEXT_PACKAGE, &error))
