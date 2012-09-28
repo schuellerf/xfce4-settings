@@ -1148,6 +1148,17 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
     gboolean      has_selection;
     gint          active_id;
     GObject *mirror_displays, *position_combo, *display_combo;
+    XfceRRMode   *current_mode;
+    GdkWindow	*root;
+	GdkGCValues gc_values;
+	GdkGC *gc;
+	GdkGCValuesMask values_mask =
+    GDK_GC_FUNCTION | GDK_GC_FILL | GDK_GC_CLIP_MASK |
+    GDK_GC_SUBWINDOW | GDK_GC_CLIP_X_ORIGIN | GDK_GC_CLIP_Y_ORIGIN |
+    GDK_GC_EXPOSURES | GDK_GC_LINE_WIDTH | GDK_GC_LINE_STYLE |
+    GDK_GC_CAP_STYLE | GDK_GC_JOIN_STYLE;
+    GdkColor gc_black = {0, 0, 0, 0};
+    GdkColor gc_red = {0, 65535, 0, 0};
 
     /* Get the selection */
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
@@ -1178,7 +1189,35 @@ display_settings_treeview_selection_changed (GtkTreeSelection *selection,
             gtk_widget_set_sensitive( GTK_WIDGET(position_combo), FALSE );
             gtk_widget_set_sensitive( GTK_WIDGET(display_combo), FALSE );
         }
+
+		/* Get the resolution of the currently selected output */
+		current_mode = xfce_randr_find_mode_by_id (xfce_randr, active_id, XFCE_RANDR_MODE (xfce_randr));
+        
+        /* Get root window */
+        root = gdk_get_default_root_window ();
+
+		/*Set up graphics context for a XOR rectangle */
+        gc_values.function           = GDK_XOR;
+		gc_values.line_width         = 12;
+		gc_values.line_style         = GDK_LINE_SOLID;
+		gc_values.fill               = GDK_SOLID;
+		gc_values.cap_style          = GDK_CAP_BUTT;
+		gc_values.join_style         = GDK_JOIN_MITER;
+		gc_values.graphics_exposures = FALSE;
+		gc_values.clip_x_origin      = 0;
+		gc_values.clip_y_origin      = 0;
+		gc_values.clip_mask          = None;
+		gc_values.subwindow_mode     = GDK_INCLUDE_INFERIORS;
+
+		gc = gdk_gc_new_with_values (root, &gc_values, values_mask);
+		gdk_gc_set_rgb_fg_color (gc, &gc_red);
+		gdk_gc_set_rgb_bg_color (gc, &gc_black);
+		/* Draw the rectangle on the currently selected screen */
+		gdk_draw_rectangle (root,gc,FALSE,XFCE_RANDR_POS_X (xfce_randr),XFCE_RANDR_POS_Y (xfce_randr),current_mode->width,current_mode->height);
+        /* Remove the previous rectangle FIXME */
+		//gdk_draw_rectangle (root,gc,FALSE,XFCE_RANDR_POS_X (xfce_randr),XFCE_RANDR_POS_Y (xfce_randr),current_mode->width,current_mode->height);
     }
+    
 }
 
 
