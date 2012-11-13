@@ -45,6 +45,10 @@
 #include "confirmation-dialog_ui.h"
 #include "minimal-display-dialog_ui.h"
 #include "identity-popup_ui.h"
+#include "scrollarea.h"
+
+#define SPACE 15
+#define MARGIN  15
 
 enum
 {
@@ -1148,13 +1152,38 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
     }
 }
 
+static gint
+display_setting_get_displays_cloned (GtkBuilder *builder)
+{
+    RRMode   mode = None;
+    guint    n;
+    gint     cloned = TRUE;
+
+    /* Can outputs be cloned? */
+    if (display_settings_get_n_active_outputs () > 1)
+        mode = xfce_randr_clonable_mode (xfce_randr);
+    
+    /* Check if mirror settings are on */
+    for (n = 0; n < xfce_randr->noutput; n++)
+    {
+        if (xfce_randr->mode[n] == None)
+            continue;
+
+        cloned &= (xfce_randr->mode[n] == mode &&
+                   xfce_randr->relation[n] == XFCE_RANDR_PLACEMENT_MIRROR);
+
+        if (!cloned)
+            break;
+    }
+    
+    return cloned;
+}
 
 static void
 display_setting_mirror_displays_populate (GtkBuilder *builder)
 {
     GObject *check;
     RRMode   mode = None;
-    guint    n;
     gint     cloned = TRUE;
 
     if (!xfce_randr)
@@ -1186,17 +1215,7 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
                                      builder);
 
     /* Check if mirror settings are on */
-    for (n = 0; n < xfce_randr->noutput; n++)
-    {
-        if (xfce_randr->mode[n] == None)
-            continue;
-
-        cloned &= (xfce_randr->mode[n] == mode &&
-                   xfce_randr->relation[n] == XFCE_RANDR_PLACEMENT_MIRROR);
-
-        if (!cloned)
-            break;
-    }
+    cloned = display_setting_get_displays_cloned(builder);
 
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), cloned);
 
@@ -1701,12 +1720,456 @@ screen_on_event (GdkXEvent *xevent,
     return GDK_FILTER_CONTINUE;
 }
 
+
+static void
+layout_set_font (PangoLayout *layout, const char *font)
+{
+    PangoFontDescription *desc =
+	pango_font_description_from_string (font);
+
+    if (desc)
+    {
+	pango_layout_set_font_description (layout, desc);
+
+	pango_font_description_free (desc);
+    }
+}
+
+static void
+get_geometry (int display_id, int *w, int *h)
+{
+    /*
+    if (output->on)
+    {
+	*h = output->height;
+	*w = output->width;
+    }
+    else
+    {
+	*h = output->pref_height;
+	*w = output->pref_width;
+    }
+   if ((output->rotation & MATE_RR_ROTATION_90) || (output->rotation & MATE_RR_ROTATION_270))
+   {
+        int tmp;
+        tmp = *h;
+        *h = *w;
+        *w = tmp;
+   }*/
+   const XfceRRMode *output = xfce_randr_find_mode_by_id (xfce_randr, display_id,
+                                                       xfce_randr->mode[display_id]);
+   *w = output->width;
+   *h = output->height;
+}
+
+
+
+/* Sets a mouse cursor for a widget's window.  As a hack, you can pass
+ * GDK_BLANK_CURSOR to mean "set the cursor to NULL" (i.e. reset the widget's
+ * window's cursor to its default).
+ */
+static void
+set_cursor (GtkWidget *widget, GdkCursorType type)
+{
+	GdkCursor *cursor;
+	GdkWindow *window;
+
+	if (type == GDK_BLANK_CURSOR)
+	    cursor = NULL;
+	else
+	    cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget), type);
+
+	window = gtk_widget_get_window (widget);
+
+	if (window)
+	    gdk_window_set_cursor (window, cursor);
+
+	if (cursor)
+	    gdk_cursor_unref (cursor);
+}
+
+static double
+compute_scale (FooScrollArea *display_widget)
+{
+    int available_w, available_h;
+    int total_w, total_h;
+    GdkRectangle viewport;
+
+    foo_scroll_area_get_viewport (display_widget, &viewport);
+    
+    available_w = viewport.width - 2 * MARGIN - (xfce_randr->noutput - 1) * SPACE;
+    available_h = viewport.height - 2 * MARGIN - (xfce_randr->noutput - 1) * SPACE;
+
+    return MIN ((double)available_w / total_w, (double)available_h / total_h);
+}
+
+static void
+on_canvas_event (FooScrollArea *area,
+		 FooScrollAreaEvent *event,
+		 gpointer data)
+{
+    /* If the mouse exits the outputs, reset the cursor to the default.  See
+     * on_output_event() for where we set the cursor to the movement cursor if
+     * it is over one of the outputs.
+     */
+    set_cursor (GTK_WIDGET (area), GDK_BLANK_CURSOR);
+}
+
+static void
+paint_background (FooScrollArea *area,
+		  cairo_t       *cr)
+{
+    GdkRectangle viewport;
+    GtkWidget *widget;
+    GtkStyle *widget_style;
+
+    widget = GTK_WIDGET (area);
+
+    foo_scroll_area_get_viewport (area, &viewport);
+    widget_style = gtk_widget_get_style (widget);
+
+    cairo_set_source_rgb (cr,
+                          widget_style->base[GTK_STATE_SELECTED].red / 65535.0,
+                          widget_style->base[GTK_STATE_SELECTED].green / 65535.0,
+                          widget_style->base[GTK_STATE_SELECTED].blue / 65535.0);
+
+    cairo_rectangle (cr,
+		     viewport.x, viewport.y,
+		     viewport.width, viewport.height);
+
+    cairo_fill_preserve (cr);
+
+    foo_scroll_area_add_input_from_fill (area, cr, on_canvas_event, NULL);
+
+    cairo_set_source_rgb (cr,
+                          widget_style->dark[GTK_STATE_SELECTED].red / 65535.0,
+                          widget_style->dark[GTK_STATE_SELECTED].green / 65535.0,
+                          widget_style->dark[GTK_STATE_SELECTED].blue / 65535.0);
+
+    cairo_stroke (cr);
+}
+
+static PangoLayout *
+get_display_name (FooScrollArea *area,
+		  int display_id)
+{
+    const char *text;
+
+    //if (app->current_configuration->clone) {
+	/* Translators:  this is the feature where what you see on your laptop's
+	 * screen is the same as your external monitor.  Here, "Mirror" is being
+	 * used as an adjective, not as a verb.  For example, the Spanish
+	 * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
+	 */
+	//text = _("Mirror Screens");
+    //} else
+	text = xfce_randr->friendly_name[display_id];
+
+    return gtk_widget_create_pango_layout (
+	GTK_WIDGET (area), text);
+}
+
+static void
+on_output_event (FooScrollArea *area,
+		 FooScrollAreaEvent *event,
+		 gpointer data)
+{
+    GtkBuilder *builder = GTK_BUILDER(data);
+    gint cloned = display_setting_get_displays_cloned(builder);
+
+    /* If the mouse is inside the outputs, set the cursor to "you can move me".  See
+     * on_canvas_event() for where we reset the cursor to the default if it
+     * exits the outputs' area.
+     */
+    if (!cloned && display_settings_get_n_active_outputs () > 1)
+	set_cursor (GTK_WIDGET (area), GDK_FLEUR);
+
+    if (event->type == FOO_BUTTON_PRESS)
+    {
+	GrabInfo *info;
+
+	app->current_output = output;
+
+	rebuild_gui (app);
+	set_monitors_tooltip (app, TRUE);
+
+	if (!cloned && display_settings_get_n_active_outputs () > 1)
+	{
+	    foo_scroll_area_begin_grab (area, on_output_event, data);
+
+	    info = g_new0 (GrabInfo, 1);
+	    info->grab_x = event->x;
+	    info->grab_y = event->y;
+	    info->output_x = output->x;
+	    info->output_y = output->y;
+
+	    output->user_data = info;
+	}
+
+	foo_scroll_area_invalidate (area);
+    }
+    else
+    {
+	if (foo_scroll_area_is_grabbed (area))
+	{
+	    GrabInfo *info = output->user_data;
+	    double scale = compute_scale (app);
+	    int old_x, old_y;
+	    int new_x, new_y;
+	    int i;
+	    GArray *edges, *snaps, *new_edges;
+
+	    old_x = output->x;
+	    old_y = output->y;
+	    new_x = info->output_x + (event->x - info->grab_x) / scale;
+	    new_y = info->output_y + (event->y - info->grab_y) / scale;
+
+	    output->x = new_x;
+	    output->y = new_y;
+
+	    edges = g_array_new (TRUE, TRUE, sizeof (Edge));
+	    snaps = g_array_new (TRUE, TRUE, sizeof (Snap));
+	    new_edges = g_array_new (TRUE, TRUE, sizeof (Edge));
+
+	    list_edges (app->current_configuration, edges);
+	    list_snaps (output, edges, snaps);
+
+	    g_array_sort (snaps, compare_snaps);
+
+	    output->x = info->output_x;
+	    output->y = info->output_y;
+
+	    for (i = 0; i < snaps->len; ++i)
+	    {
+		Snap *snap = &(g_array_index (snaps, Snap, i));
+		GArray *new_edges = g_array_new (TRUE, TRUE, sizeof (Edge));
+
+		output->x = new_x + snap->dx;
+		output->y = new_y + snap->dy;
+
+		g_array_set_size (new_edges, 0);
+		list_edges (app->current_configuration, new_edges);
+
+		if (mate_rr_config_is_aligned (app->current_configuration, new_edges))
+		{
+		    g_array_free (new_edges, TRUE);
+		    break;
+		}
+		else
+		{
+		    output->x = info->output_x;
+		    output->y = info->output_y;
+		}
+	    }
+
+	    g_array_free (new_edges, TRUE);
+	    g_array_free (snaps, TRUE);
+	    g_array_free (edges, TRUE);
+
+	    if (event->type == FOO_BUTTON_RELEASE)
+	    {
+		foo_scroll_area_end_grab (area);
+		set_monitors_tooltip (app, FALSE);
+
+		g_free (output->user_data);
+		output->user_data = NULL;
+
+#if 0
+		g_debug ("new position: %d %d %d %d", output->x, output->y, output->width, output->height);
+#endif
+	    }
+
+	    foo_scroll_area_invalidate (area);
+	}
+    }
+}
+
+static void
+paint_output (FooScrollArea *area, cairo_t *cr, int i)
+{
+    int w, h;
+    double scale = compute_scale (area);
+    double x, y;
+    int total_w, total_h;
+    
+    const XfceRRMode *output = xfce_randr_find_mode_by_id (xfce_randr, i,
+                                                       xfce_randr->mode[i]);
+    
+    PangoLayout *layout = get_display_name (area, i);
+    PangoRectangle ink_extent, log_extent;
+    GdkRectangle viewport;
+    GdkColor output_color;
+    double r, g, b;
+    double available_w;
+    double factor;
+
+    cairo_save (cr);
+
+    foo_scroll_area_get_viewport (FOO_SCROLL_AREA (area), &viewport);
+
+    get_geometry (i, &w, &h);
+
+#if 0
+    g_debug ("%s (%p) geometry %d %d %d", output->name, output,
+	     w, h, output->rate);
+#endif
+
+    viewport.height -= 2 * MARGIN;
+    viewport.width -= 2 * MARGIN;
+
+    x = output->width * scale + MARGIN + (viewport.width - total_w * scale) / 2.0;
+    y = output->height * scale + MARGIN + (viewport.height - total_h * scale) / 2.0;
+
+#if 0
+    g_debug ("scaled: %f %f", x, y);
+
+    g_debug ("scale: %f", scale);
+
+    g_debug ("%f %f %f %f", x, y, w * scale + 0.5, h * scale + 0.5);
+#endif
+
+    cairo_save (cr);
+
+    cairo_translate (cr,
+		     x + (w * scale + 0.5) / 2,
+		     y + (h * scale + 0.5) / 2);
+
+    /* rotation is already applied in get_geometry */
+
+/*    if (output->rotation & MATE_RR_REFLECT_X)
+	cairo_scale (cr, -1, 1);
+
+    if (output->rotation & MATE_RR_REFLECT_Y)
+	cairo_scale (cr, 1, -1); */
+
+    cairo_translate (cr,
+		     - x - (w * scale + 0.5) / 2,
+		     - y - (h * scale + 0.5) / 2);
+
+
+    cairo_rectangle (cr, x, y, w * scale + 0.5, h * scale + 0.5);
+    cairo_clip_preserve (cr);
+
+/*
+    mate_rr_labeler_get_color_for_output (app->labeler, output, &output_color);
+    r = output_color.red / 65535.0;
+    g = output_color.green / 65535.0;
+    b = output_color.blue / 65535.0;
+*/
+    r = 255.0;
+    g = 255.0;
+    b = 255.0;
+
+/*
+    if (!output->on)
+    {*/
+	/* If the output is turned off, just darken the selected color */
+	/*r *= 0.2;
+	g *= 0.2;
+	b *= 0.2;
+    }*/
+
+    cairo_set_source_rgba (cr, r, g, b, 1.0);
+
+    foo_scroll_area_add_input_from_fill (area,
+					 cr, on_output_event, output);
+    cairo_fill (cr);
+
+    if (output == app->current_output)
+    {
+	cairo_rectangle (cr, x + 2, y + 2, w * scale + 0.5 - 4, h * scale + 0.5 - 4);
+
+	cairo_set_line_width (cr, 4);
+	cairo_set_source_rgba (cr, 0.33, 0.43, 0.57, 1.0);
+	cairo_stroke (cr);
+    }
+
+    cairo_rectangle (cr, x + 0.5, y + 0.5, w * scale + 0.5 - 1, h * scale + 0.5 - 1);
+
+    cairo_set_line_width (cr, 1);
+    cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 1.0);
+
+    cairo_stroke (cr);
+    cairo_set_line_width (cr, 2);
+
+    layout_set_font (layout, "Sans Bold 12");
+    pango_layout_get_pixel_extents (layout, &ink_extent, &log_extent);
+
+    available_w = w * scale + 0.5 - 6; /* Same as the inner rectangle's width, minus 1 pixel of padding on each side */
+    if (available_w < ink_extent.width)
+	factor = available_w / ink_extent.width;
+    else
+	factor = 1.0;
+
+    cairo_move_to (cr,
+		   x + ((w * scale + 0.5) - factor * log_extent.width) / 2,
+		   y + ((h * scale + 0.5) - factor * log_extent.height) / 2);
+
+    cairo_scale (cr, factor, factor);
+
+    if (output->on)
+	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+    else
+	cairo_set_source_rgb (cr, 1.0, 1.0, 1.0);
+
+    pango_cairo_show_layout (cr, layout);
+
+    cairo_restore (cr);
+
+    g_object_unref (layout);
+}
+
+static void
+on_area_paint (FooScrollArea *area,
+	       cairo_t	     *cr,
+	       GdkRectangle  *extent,
+	       GdkRegion     *region,
+	       gpointer	      data)
+{
+    App *app = data;
+    double scale;
+    GList *connected_outputs = NULL;
+    GList *list;
+
+    paint_background (area, cr);
+
+    if (!app->current_configuration)
+	return;
+
+    scale = compute_scale (area);
+    connected_outputs = list_connected_outputs (app, NULL, NULL);
+    
+#if 0
+    g_debug ("scale: %f", scale);
+#endif
+
+    for (list = connected_outputs; list != NULL; list = list->next)
+    {
+	paint_output (app, cr, g_list_position (connected_outputs, list));
+
+	if (app->current_configuration->clone)
+	    break;
+    }
+}
+
+static void
+on_viewport_changed (FooScrollArea *scroll_area,
+		     GdkRectangle  *old_viewport,
+		     GdkRectangle  *new_viewport)
+{
+    foo_scroll_area_set_size (scroll_area,
+			      new_viewport->width,
+			      new_viewport->height);
+
+    foo_scroll_area_invalidate (scroll_area);
+}
+
 static void
 display_settings_show_main_dialog (GdkDisplay *display)
 {
     GtkBuilder  *builder;
-    GtkWidget   *dialog, *plug;
-    GObject     *plug_child;
+    GtkWidget   *dialog, *plug, *display_widget;
+    GObject     *plug_child, *display_widget_container;
     GError      *error = NULL;
 
     /* Load the Gtk user-interface file */
@@ -1743,6 +2206,21 @@ display_settings_show_main_dialog (GdkDisplay *display)
             /* Get plug child widget */
             plug_child = gtk_builder_get_object (builder, "plug-child");
             gtk_widget_reparent (GTK_WIDGET (plug_child), plug);
+            
+            
+            display_widget = (GtkWidget *)foo_scroll_area_new ();
+            
+            /* FIXME: this should be computed dynamically */
+            foo_scroll_area_set_min_size (FOO_SCROLL_AREA (display_widget), -1, 200);
+            gtk_widget_show (display_widget);
+            g_signal_connect (display_widget, "paint",
+		      G_CALLBACK (on_area_paint), app);
+            g_signal_connect (display_widget, "viewport_changed",
+		      G_CALLBACK (on_viewport_changed), app);
+            
+            display_widget_container = gtk_builder_get_object(builder, "display-widget");
+            gtk_container_add (GTK_CONTAINER (display_widget_container), display_widget);
+            
             gtk_widget_show (GTK_WIDGET (plug_child));
         }
 
