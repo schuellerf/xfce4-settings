@@ -1207,6 +1207,24 @@ display_setting_mirror_displays_populate (GtkBuilder *builder)
 }
 
 
+static void
+display_setting_primary_toggled (GtkToggleButton *togglebutton,
+                                GtkBuilder      *builder)
+{
+    if (!xfce_randr)
+        return;
+
+    if (gtk_toggle_button_get_active (togglebutton))
+        xfce_randr->status[active_output]=XFCE_OUTPUT_STATUS_PRIMARY;
+    else
+        xfce_randr->status[active_output]=XFCE_OUTPUT_STATUS_SECONDARY;
+
+    /* Apply the changes */
+    xfce_randr_save_output (xfce_randr, "Default", display_channel,
+                            active_output, FALSE);
+    xfce_randr_apply (xfce_randr, "Default", display_channel);
+}
+
 
 static void
 display_setting_output_toggled (GtkToggleButton *togglebutton,
@@ -1516,7 +1534,10 @@ display_settings_dialog_new (GtkBuilder *builder)
     combobox = gtk_builder_get_object (builder, "randr-rotation");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), builder);
-    
+
+    check = gtk_builder_get_object (builder, "primary");
+    g_signal_connect (G_OBJECT (check), "toggled", G_CALLBACK (display_setting_primary_toggled), builder);
+
     check = gtk_builder_get_object (builder, "minimal-autoshow");
     xfconf_g_property_bind (display_channel, "/Notify", G_TYPE_BOOLEAN, check,
                             "active");
