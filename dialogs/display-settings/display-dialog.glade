@@ -251,10 +251,11 @@
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="primary">
-                    <property name="label" translatable="yes">Set as primary</property>
+                    <property name="label" translatable="yes">Set as primary display</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
+                    <property name="tooltip_text" translatable="yes">This is a hint for panels, docks and desktop to show on this display preferably.</property>
                     <property name="use_action_appearance">False</property>
                     <property name="draw_indicator">True</property>
                   </object>
