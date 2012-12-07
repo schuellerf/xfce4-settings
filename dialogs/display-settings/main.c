@@ -1211,11 +1211,23 @@ static void
 display_setting_primary_toggled (GtkToggleButton *togglebutton,
                                 GtkBuilder      *builder)
 {
+    guint   m;
+    
     if (!xfce_randr)
         return;
 
     if (gtk_toggle_button_get_active (togglebutton))
+    {
+    /* Set currently active display as primary and all others as secondary */
         xfce_randr->status[active_output]=XFCE_OUTPUT_STATUS_PRIMARY;
+        for (m = 0; m < xfce_randr->noutput; ++m)
+        {
+            if (m != active_output)
+            {
+                xfce_randr->status[m]=XFCE_OUTPUT_STATUS_SECONDARY;
+            }
+        }
+    }
     else
         xfce_randr->status[active_output]=XFCE_OUTPUT_STATUS_SECONDARY;
 
