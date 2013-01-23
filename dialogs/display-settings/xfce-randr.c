@@ -245,6 +245,8 @@ xfce_randr_populate (XfceRandr *randr,
     XRRCrtcInfo   *crtc_info;
     gint           n;
     guint          m;
+    
+    XfconfChannel *display_channel = xfconf_channel_new ("displays");
 
     g_return_if_fail (randr != NULL);
     g_return_if_fail (randr->priv != NULL);
@@ -321,6 +323,10 @@ xfce_randr_populate (XfceRandr *randr,
 
         /* fill in the name used by the UI */
         randr->friendly_name[m] = xfce_randr_friendly_name (randr, m);
+        
+        /* Update display info, primary display may have changed. */
+        xfce_randr_save_output (randr, "Default", display_channel,
+                            m, FALSE);
     }
 
     /* calculate relations from positions */
