@@ -31,6 +31,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
+#include <gdk/gdkkeysyms.h>
 
 #include <xfconf/xfconf.h>
 #include <exo/exo.h>
@@ -113,7 +114,7 @@ static const XfceRotation reflection_names[] =
     { 0,                         N_("None") },
     { RR_Reflect_X,              N_("Horizontal") },
     { RR_Reflect_Y,              N_("Vertical") },
-    { RR_Reflect_X|RR_Reflect_Y, N_("Both") }
+    { RR_Reflect_X|RR_Reflect_Y, N_("Horizontal and Vertical") }
 };
 
 
@@ -1119,7 +1120,7 @@ display_setting_mirror_displays_toggled (GtkToggleButton *togglebutton,
                 xfce_randr->mode[n] = mode;
             xfce_randr->relation[n] = XFCE_RANDR_PLACEMENT_MIRROR;
             xfce_randr->related_to[n] = active_output;
-
+            xfce_randr->rotation[n] = RR_Rotate_0;
             xfce_randr_save_output (xfce_randr, "Default", display_channel,
                                     n, TRUE);
         }
@@ -1516,6 +1517,10 @@ display_settings_dialog_new (GtkBuilder *builder)
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox));
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), builder);
 
+    check = gtk_builder_get_object (builder, "minimal-autoshow");
+    xfconf_g_property_bind (display_channel, "/Notify", G_TYPE_BOOLEAN, check,
+                            "active");
+
     /* Populate the treeview */
     display_settings_treeview_populate (builder);
 
@@ -1766,6 +1771,19 @@ display_settings_show_main_dialog (GdkDisplay *display)
     g_object_unref (G_OBJECT (builder));
 }
 
+static gboolean
+display_settings_minimal_dialog_key_press_event(GtkWidget *widget,
+                                                GdkEventKey *event,
+                                                gpointer user_data)
+{
+    if (event->keyval == GDK_Escape)
+    {
+        gtk_main_quit();
+        return TRUE;
+    }
+    return FALSE;
+}
+
 static void
 display_settings_minimal_advanced_clicked (GtkButton  *button,
                                            GtkBuilder *builder)
@@ -1817,6 +1835,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         dialog = GTK_WIDGET (gtk_builder_get_object (builder, "dialog"));
         cancel = GTK_WIDGET (gtk_builder_get_object (builder, "cancel_button"));
 
+        g_signal_connect (dialog, "key-press-event", G_CALLBACK (display_settings_minimal_dialog_key_press_event), NULL);
         g_signal_connect (dialog, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
         g_signal_connect (cancel, "clicked", G_CALLBACK (gtk_main_quit), NULL);
 
@@ -1836,6 +1855,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
 
         label = gtk_builder_get_object (builder, "label1");
         gtk_label_set_text (GTK_LABEL (label), xfce_randr->friendly_name[0]);
+        gtk_widget_set_tooltip_text(GTK_WIDGET(label), xfce_randr->friendly_name[0]);
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display1),
                                       xfce_randr->mode[0] != None);
@@ -1844,6 +1864,7 @@ display_settings_show_minimal_dialog (GdkDisplay *display)
         {
             label = gtk_builder_get_object (builder, "label4");
             gtk_label_set_text (GTK_LABEL (label), xfce_randr->friendly_name[1]);
+            gtk_widget_set_tooltip_text(GTK_WIDGET(label), xfce_randr->friendly_name[1]);
             gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (only_display2),
                                           xfce_randr->mode[1] != None);
 

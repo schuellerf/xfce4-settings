@@ -3,220 +3,220 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Dmitry Nikitin <luckas_fb@mail.ru>, 2008
+# Cheng-Chia Tseng <pswo10680@gmail.com>, 2010
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 22:46+0200\n"
-"PO-Revision-Date: 2013-11-19 13:19+0000\n"
-"Last-Translator: Nick <nick@xfce.org>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/projects/p/xfce/language/uk/)\n"
+"PO-Revision-Date: 2013-10-12 12:14+0000\n"
+"Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
+"Language-Team: Chinese (Hong Kong) (http://www.transifex.com/projects/p/xfce/language/zh_HK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: zh_HK\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:1
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:1
 msgid "Accessibility"
-msgstr "Доступність"
+msgstr "無障礙"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:2
 msgid "Configure keyboard and mouse accessibility"
-msgstr "Налаштування доступності клавіатури і миші"
+msgstr "設定鍵盤和滑鼠的無障礙功能"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:3
 msgid "_Enable assistive technologies"
-msgstr "_Включити допоміжні технології"
+msgstr "啟用無障礙輔助(_E)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:4
 msgid ""
 "If enabled, the session manager will start the required applications for "
 "screen readers and magnifiers"
-msgstr "Якщо включено, тоді менеджер сеансу запустить потрібну програму для читалки екрану і лупи"
+msgstr "如果啟用的話，工作階段管理員會啟動所需的螢幕閱讀程式與放大鏡程式。"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid ""
 "Assistive technologies will be available the\n"
 "next time you login"
-msgstr "Допоміжні технології будуть доступні після\n наступного вашого входу"
+msgstr "下次登入時將可使用無障礙功能"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "No AT-SPI provider was found on your system"
-msgstr "Не знайдено провайдера AT-SPI у Вашій системі"
+msgstr "在系統找不到 AT-SPI 提供者"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "Assistive _Technologies"
-msgstr "_Допоміжні технології"
+msgstr "無障礙功能(_T)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "_Use sticky keys"
-msgstr "Використовувати липк_і клавіші"
+msgstr "使用相黏鍵(_U)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) do not need "
 "to be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time"
-msgstr "Коли вибрано, модифікатори клавіш (такі як Control, Alt, і Shift) не потрібно затискати (вони можуть бути натиснуті і відпущені) коли кілька клавіш необхідно було б натиснути в той самий час"
+msgstr "當選取時，通常要同時按下超過一個按鍵的功能修飾鍵 (例如 Ctrl、Alt、Shift) 不需要一直按着不放 (可以按一下然後放開)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Lock sticky keys"
-msgstr "_Блокувати липкі клавіші"
+msgstr "鎖定相黏鍵(_L)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
-msgstr "Коли вибрано, модифікатори клавіш (такі як Control, Alt, і Shift) будуть тимчасово зафіксовані в натиснутому стані, доки не будуть натиснуті знову"
+msgstr "當選取時，修飾鍵 (例如 Ctrl、Alt、Shift) 在按了一下之後會維持在「按下」狀態，直到再按為止"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid "Disable sticky keys if two keys are _pressed"
-msgstr "Вимкнути липкі клавіші якщо натиснуто _дві клавіші"
+msgstr "若按下兩個按鍵的話則停用相黏鍵(_P)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
-msgstr "Коли вибрано, властивість \"липкі клавіші\" буде вимкнуто, якщо дві клавіші будуть натиснуті одночасно"
+msgstr "當選取時，若同時按下兩個按鍵的話，會停用「相黏鍵」功能"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid "Sticky Keys"
-msgstr "Липкі клавіші"
+msgstr "相黏鍵"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid "Use slow _keys"
-msgstr "Використовувати пові_льні клавіші"
+msgstr "使用緩速鍵(_K)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:17
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted"
-msgstr "Для попередження випадкового натиснення клавіш, повільні клавіші потребують щоб була натиснута клавіша протягом деякого часу перед тим, як комбінація клавіш буде прийнята"
+msgstr "為了防止出現不想要的按鍵，「緩速鍵」需要該按鍵至少要被按下一小段時間後才會接受其按鍵效果"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Acceptance _delay:"
-msgstr "_Затримка прискорення:"
+msgstr "接受前延遲(_D)："
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:19
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
-msgstr "Кількість часу в мілісекундах, що має минути до натискання клавіші, що буде прийнята"
+msgstr "在按鍵效果被接受之前所要經過的時間，單位為毫秒"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:20
 msgid "Slow Keys"
-msgstr "Повільні клавіші"
+msgstr "緩速鍵"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "Use _bounce keys"
-msgstr "Використовуват_и спеціальні клавіші"
+msgstr "使用彈回鍵(_B)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:22
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes"
-msgstr "Для попередження випадкового натиснення кількох комбінацій клавіш,спеціальні клавіші потребують мінімальної затримки між комбінаціями"
+msgstr "為了防止出現不想要的多重按鍵，「彈回鍵」讓按鍵生效前需要至少一段延遲時間"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "K_eystroke delay:"
-msgstr "Затримка клавіат_ури:"
+msgstr "按鍵按壓延遲(_E)："
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "The amount of time, in milliseconds, required between keystrokes"
-msgstr "Кількість часу, в мілісекундах, необхідного між повторами клавіатури"
+msgstr "按鍵效果之間所需要的時間，單位為毫秒"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "Bounce Keys"
-msgstr "Спеціальні клавіші"
+msgstr "彈回鍵"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid "Keyboa_rd"
-msgstr "_Клавіатура"
+msgstr "鍵盤(_R)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid "_Use mouse emulation"
-msgstr "_Використовувати емуляцію миші"
+msgstr "使用滑鼠模擬(_U)"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:28
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
-msgstr "Коли вибрано, вказівник миші може контролюватись з допомогою цифрової клавіатури"
+msgstr "當選取時，滑鼠指標可以使用鍵盤的數字鍵盤來控制"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid "R_epeat interval:"
-msgstr "Інтервал повтор_у:"
+msgstr "重複間隔(_E)："
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid "_Acceleration delay:"
-msgstr "_Затримка прискорення:"
+msgstr "加速度延遲(_A)："
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid "Acceleration t_ime:"
-msgstr "_Час прискорення:"
+msgstr "加速度時間(_I)："
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid "Ma_ximum speed:"
-msgstr "Максимальна швидк_ість:"
+msgstr "最大速度(_X)："
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "Acceleration _profile:"
-msgstr "_Профіль прискорення:"
+msgstr "加速度個人設定檔(_P)："
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:34
 msgid "msec"
-msgstr "мс"
+msgstr "微秒"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "pixels/sec"
-msgstr "пікселів/сек"
+msgstr "像素/秒"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
-msgstr "Час в мілісекундах, між початковим натисненням клавіші і першою подією переміщення"
+msgstr "介於剛開始按壓按鍵與第一個重複動作事件間的時間，單位為毫秒"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "The time, in milliseconds, between repeated motion events"
-msgstr "Час в мілісекундах, між повторюваними подіями переміщення"
+msgstr "介於重複動作事件的時間，單位為毫秒"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "The ramp used to reach maximum pointer speed"
-msgstr "Поріг що використовується для досягнення максимальної швидкості вказівника"
+msgstr "達到最大指標速度的斜率"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
 msgid "The maximum pointer speed after acceleration"
-msgstr "Максимальна швидкість вказівника після прискорення"
+msgstr "加速度後的最大指標速度"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
 msgid "The time, in milliseconds, to get to maximum speed"
-msgstr "Час в мілісекундах, для отримання максимальної швидкості"
+msgstr "達到最大速度的時間，單位為毫秒"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "Mouse Emulation"
-msgstr "Емуляція миші"
+msgstr "滑鼠模擬"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
 msgid "_Mouse"
-msgstr "_Миша"
+msgstr "滑鼠(_M)"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "Settings manager socket"
-msgstr "Сокет менеджера параметрів"
+msgstr "設定管理員 socket"
 
 #: ../dialogs/accessibility-settings/main.c:43
 #: ../dialogs/appearance-settings/main.c:95
 #: ../dialogs/display-settings/main.c:137
 #: ../dialogs/keyboard-settings/main.c:39 ../dialogs/mouse-settings/main.c:79
 msgid "SOCKET ID"
-msgstr "ID сокета"
+msgstr "SOCKET ID"
 
 #: ../dialogs/accessibility-settings/main.c:44
 #: ../dialogs/appearance-settings/main.c:96
@@ -225,7 +225,7 @@ msgstr "ID сокета"
 #: ../dialogs/mouse-settings/main.c:80 ../xfce4-settings-editor/main.c:43
 #: ../xfsettingsd/main.c:77 ../xfce4-settings-manager/main.c:40
 msgid "Version information"
-msgstr "Інформація про версію"
+msgstr "版本資訊"
 
 #: ../dialogs/accessibility-settings/main.c:192
 #: ../dialogs/appearance-settings/main.c:1006
@@ -235,7 +235,7 @@ msgstr "Інформація про версію"
 #: ../xfsettingsd/main.c:187 ../xfce4-settings-manager/main.c:61
 #, c-format
 msgid "Type '%s --help' for usage."
-msgstr "Наберіть '%s --help' для використання."
+msgstr "輸入 '%s --help' 以了解用法。"
 
 #: ../dialogs/accessibility-settings/main.c:211
 #: ../dialogs/appearance-settings/main.c:1025
@@ -244,7 +244,7 @@ msgstr "Наберіть '%s --help' для використання."
 #: ../dialogs/mouse-settings/main.c:1630 ../xfce4-settings-editor/main.c:82
 #: ../xfsettingsd/main.c:203 ../xfce4-settings-manager/main.c:77
 msgid "The Xfce development team. All rights reserved."
-msgstr "Команда розробників Xfce. Всі права застережено."
+msgstr "Xfce 開發團隊。保留所有權利。"
 
 #: ../dialogs/accessibility-settings/main.c:212
 #: ../dialogs/appearance-settings/main.c:1026
@@ -254,86 +254,86 @@ msgstr "Команда розробників Xfce. Всі права засте
 #: ../xfsettingsd/main.c:204 ../xfce4-settings-manager/main.c:78
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "Звіти про помилки для <%s>."
+msgstr "請將錯誤報告 <%s>。"
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
-msgstr "Покращення доступності миші і клавіатури"
+msgstr "改善鍵盤和滑鼠的無障礙功能"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
 msgid "Appearance"
-msgstr "Зовнішній вигляд"
+msgstr "外觀"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
 msgid "Customize the look of your desktop"
-msgstr "Налаштуйте зовнішній вигляд вашої стільниці"
+msgstr "自訂桌面外觀"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
 msgid "St_yle"
-msgstr "Ст_иль"
+msgstr "樣式(_Y)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:4
 msgid "_Icons"
-msgstr "_Значки"
+msgstr "圖示(_I)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:5
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
-msgstr "Цей шрифт буде використовуватись як типовий шрифт для відображення тексту в інтерфейсі користувача"
+msgstr "繪製使用者介面文字的預設字型"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:6
 msgid "Select a default font"
-msgstr "Вибрати типовий шрифт"
+msgstr "選取預設字型"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
 msgid "Default Fon_t"
-msgstr "Типовий шриф_т"
+msgstr "預設字型(_T)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
-msgstr "Багато шрифтів мають інформацію, що забезпечує додаткові можливості, такі як краще відображати шрифт; підібрати найкращий вигляд відповідно до особистих вподобань"
+msgstr "許多字型包含提供額外修飾指示的資訊，比如說繪製該字型的最佳方式該怎麼做；請依照個人偏好挑選看起來最舒爽的那一項"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
-msgstr "Якість шрифту на TFT або LCD екранах можна значно покращити за рахунок вибору правильного вибору суб-піксельного параметру екрану"
+msgstr "在 TFT 或 LCD 顯示器上的字型品質可以藉由選擇顯示器的正確次像素排序而顯著改善。"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 msgid "Sub-_pixel order:"
-msgstr "Суб-_піксельна послідовність:"
+msgstr "次像素排序(_P)："
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
 msgid "Hintin_g:"
-msgstr "_Хінтинг:"
+msgstr "修飾(_G)："
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:12
 msgid "_Enable anti-aliasing"
-msgstr "Увімкнут_и згладження"
+msgstr "啟用防鋸齒(_E)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:13
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "Anti-aliasing, або згладжування шрифту, це може поліпшити зовнішній вигляд тексту на екрані"
+msgstr "防鋸齒或稱字型平滑化，可以改善畫面中文字的外觀"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:14
 msgid "Rendering"
-msgstr "Рендерінг"
+msgstr "繪製方式"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "Custom _DPI setting:"
-msgstr "Нетипо_ві параметри DPI:"
+msgstr "自訂 _DPI 設定值："
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
-msgstr "Замінити визначену роздільну здатність монітора, якщо шрифти виглядають надто великими або маленькими"
+msgstr "若字型看起來過大或過小，便無視偵測到的螢幕解像度"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:17
 msgid "DPI"
@@ -341,140 +341,140 @@ msgstr "DPI"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:18
 msgid "_Fonts"
-msgstr "_Шрифти"
+msgstr "字型(_F)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Specify what should be displayed in toolbar items"
-msgstr "Визначитись, що варто виводити на елементах панелі"
+msgstr "指定工具列項目該顯示什麼"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "_Toolbar Style"
-msgstr "Стиль Пан_елі"
+msgstr "工具列樣式(_T)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid "Show images on _buttons"
-msgstr "Виводити значк_и на кнопках"
+msgstr "在按鈕上顯示影像(_B)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr "Визначитись чи виводити значки разом з текстом на кнопках"
+msgstr "指定圖示是否該顯示在按鈕內的文字旁"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Show images in _menus"
-msgstr "Виводити значки в _меню"
+msgstr "在選單內顯示影像(_M)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "Specify whether icons should be displayed next to items in menus"
-msgstr "Визначитись чи виводити значки пунктів меню"
+msgstr "指定圖示是否該顯示在選單內的項目旁"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid "Enable e_ditable accelerators"
-msgstr "Увімкнути змінні прискорю_вачі"
+msgstr "啟用可編輯的快速鍵(_D)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
-msgstr "Якщо вибрано, комбінації клавіш для пунктів меню можуть бути змінені шляхом зависання вказівника миші над пунктом меню і натисканням нової комбінації клавіш швидкого доступу"
+msgstr "若選取，選單項目的鍵盤捷徑可以透過將滑鼠指向選單項目，接著為該捷徑按下新的按鍵組合來變更"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid "Menus and Buttons"
-msgstr "Меню і кнопки"
+msgstr "選單和按鈕"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Enable _event sounds"
-msgstr "Увімкнути зв_уки подій"
+msgstr "啟用事件音效(_E)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr "Увімкнути чи вимкнути звуки подій глобально (потребує підтримки \"Canberra\")"
+msgstr "啟用或停用全系統事件音效 (需要有「Canberra」支援)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Enable input feedbac_k sounds"
-msgstr "Увімкну_ти вхідні фонові звуки"
+msgstr "啟用輸入回饋音效(_K)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
-msgstr "Визначитись чи програвати звуки при клацанні миші та інших подіях"
+msgstr "指定滑鼠點擊或其他使用者輸入是否要播放事件音效"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid "Event sounds"
-msgstr "Звуки подій"
+msgstr "事件音效"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "Setti_ngs"
-msgstr "_Параметри"
+msgstr "設定(_N)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 #: ../dialogs/appearance-settings/main.c:892
 #: ../dialogs/display-settings/main.c:103
 #: ../dialogs/display-settings/main.c:114
 msgid "None"
-msgstr "Нічого"
+msgstr "無"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Slight"
-msgstr "Плавно"
+msgstr "輕"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:36
 msgid "Medium"
-msgstr "Посередньо"
+msgstr "中"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:37
 msgid "Full"
-msgstr "Повністю"
+msgstr "完全"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:38
 msgid "Icons"
-msgstr "Значки"
+msgstr "圖示"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "Text"
-msgstr "Текст"
+msgstr "文字"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid "Text under icons"
-msgstr "Текст під іконками"
+msgstr "文字在圖示下"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Text next to icons"
-msgstr "Текст біля іконок"
+msgstr "文字在圖示旁"
 
 #: ../dialogs/appearance-settings/main.c:355
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
-msgstr "Попередження: ця тема іконок не має файлу кешу. Ви можете створити його, запускаючи <i>gtk-update-icon-cache %s/%s/</i> в емуляторі терміналу."
+msgstr "警告：此圖示主題沒有快取檔。您可以在終端機模擬器中執行 <i>gtk-update-icon-cache %s/%s/</i> 來製作快取。"
 
 #: ../dialogs/appearance-settings/main.c:765
 #, c-format
 msgid "File is larger than %d MB, installation aborted"
-msgstr "Файл більший ніж %d МБ, встановлення перервано"
+msgstr "檔案大於 %d MB，已中止安裝"
 
 #: ../dialogs/appearance-settings/main.c:770
 msgid "Failed to create temporary directory"
-msgstr "Не вдалося створити тимчасову теку"
+msgstr "未能建立暫存目錄"
 
 #: ../dialogs/appearance-settings/main.c:775
 msgid "Failed to extract archive"
-msgstr "Не вдалося витягти архів"
+msgstr "未能抽出封存檔"
 
 #: ../dialogs/appearance-settings/main.c:780
 msgid "Unknown format, only archives and directories are supported"
-msgstr "Невідомий формат, підтримуються тільки архіви і теки"
+msgstr "未知格式，僅支援封存檔與目錄"
 
 #: ../dialogs/appearance-settings/main.c:785
 #, c-format
 msgid "An unknown error, exit code is %d"
-msgstr "Невідома помилка, код виходу %d"
+msgstr "未知錯誤，結束代碼為 %d"
 
 #: ../dialogs/appearance-settings/main.c:792
 msgid "Failed to install theme"
-msgstr "Невдача при встановленні теми"
+msgstr "未能安裝佈景主題"
 
 #: ../dialogs/appearance-settings/main.c:896
 msgid "RGB"
@@ -486,200 +486,200 @@ msgstr "BGR"
 
 #: ../dialogs/appearance-settings/main.c:904
 msgid "Vertical RGB"
-msgstr "Вертикальний RGB"
+msgstr "垂直 RGB"
 
 #: ../dialogs/appearance-settings/main.c:908
 msgid "Vertical BGR"
-msgstr "Вертикальний BGR"
+msgstr "垂直 BGR"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "Confirmation"
-msgstr "Підтвердження"
+msgstr "確認"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
 msgid "Keep this configuration"
-msgstr "Зберегти цю конфігурацію"
+msgstr "保留此組態"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
 msgid "Restore the previous configuration"
-msgstr "Відновити попередню конфігурацію"
+msgstr "還原至前次組態"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:4
 msgid "<big><b>Would you like to keep this configuration?</b></big>"
-msgstr "<big><b>Ви бажаєте зберегти цю конфігурацію?</b></big>"
+msgstr "<big><b>想要保留此組態嗎？</b></big>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:5
 msgid ""
 "The previous configuration will be restored in 10 seconds if you do not "
 "reply to this question."
-msgstr "Попередня конфігурація відновиться через 10 секунд, якщо Ви не дасте відповіді на це питання."
+msgstr "若無法回應此提問，將於 10 秒內還原成之前的組態。"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
 msgid "Display"
-msgstr "Дисплей"
+msgstr "顯示"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Configure screen settings and layout"
-msgstr "Налаштувати параметри екрану та клавіатури"
+msgstr "調整螢幕設定值與配置"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "Ref_lection:"
-msgstr "Відоб_раження:"
+msgstr "映射(_L)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "Ro_tation:"
-msgstr "Об_ертання:"
+msgstr "旋轉(_T)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Refresh _rate:"
-msgstr "Часто_та оновлення:"
+msgstr "更新頻率(_R)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "R_esolution:"
-msgstr "Р_оздільна здатність:"
+msgstr "解像度(_E)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "P_osition:"
-msgstr "П_озиція:"
+msgstr "位置(_O)："
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "_Use this output"
-msgstr "В_икористати цей вивід"
+msgstr "使用此輸出(_U)"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "_Mirror displays"
-msgstr "Дзе_ркальні Дисплеї"
+msgstr "讓顯示器鏡像顯示(_M)"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "Configure _new displays when connected"
-msgstr "Налаштування _нових дисплеїв при приєднанні"
+msgstr "當連接時設定新的顯示器(_N)"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
-msgstr "Дисплеї"
+msgstr "顯示器"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
 msgid "Only Display 1"
-msgstr "Тільки Дисплей 1"
+msgstr "僅顯示器 1"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
 msgid "Mirror Displays"
-msgstr "Дзеркальні Дисплеї"
+msgstr "讓顯示器鏡像顯示"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
 msgid "Extend to the right"
-msgstr "Розширити вправо"
+msgstr "延伸至右方"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Only Display 2"
-msgstr "Тільки Дисплей 2"
+msgstr "僅顯示器 2"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
 msgid "Advanced"
-msgstr "Більше"
+msgstr "進階"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
-msgstr "кнопкарадіо"
+msgstr "點選用按鈕"
 
 #: ../dialogs/display-settings/main.c:91
 msgid "Same as"
-msgstr "Так само як"
+msgstr "同於"
 
 #: ../dialogs/display-settings/main.c:92
 msgid "Above"
-msgstr "Вище"
+msgstr "上於"
 
 #: ../dialogs/display-settings/main.c:93
 msgid "Below"
-msgstr "Нижче"
+msgstr "下於"
 
 #: ../dialogs/display-settings/main.c:94
 msgid "Right of"
-msgstr "Праворуч від"
+msgstr "右於"
 
 #: ../dialogs/display-settings/main.c:95
 msgid "Left of"
-msgstr "Ліворуч від"
+msgstr "左於"
 
 #: ../dialogs/display-settings/main.c:104
 msgid "Left"
-msgstr "Ліворуч"
+msgstr "左"
 
 #: ../dialogs/display-settings/main.c:105
 msgid "Inverted"
-msgstr "Інвертовано"
+msgstr "反轉"
 
 #: ../dialogs/display-settings/main.c:106
 msgid "Right"
-msgstr "Праворуч"
+msgstr "右"
 
 #: ../dialogs/display-settings/main.c:115
 msgid "Horizontal"
-msgstr "Горизонтально"
+msgstr "水平"
 
 #: ../dialogs/display-settings/main.c:116
 msgid "Vertical"
-msgstr "Вертикально"
+msgstr "垂直"
 
 #: ../dialogs/display-settings/main.c:117
 msgid "Horizontal and Vertical"
-msgstr "Горизонтально і вертикально"
+msgstr "水平和垂直"
 
 #: ../dialogs/display-settings/main.c:139
 msgid "Minimal interface to set up an external output"
-msgstr "Мінімальний інтерфейс для налаштування зовнішнього виходу"
+msgstr "設置外部輸出的最小介面"
 
 #: ../dialogs/display-settings/main.c:227
 #, c-format
 msgid ""
 "The previous configuration will be restored in %i seconds if you do not "
 "reply to this question."
-msgstr "Попередня конфігурація відновиться через %i секунд, якщо Ви не дасте відповіді на це питання."
+msgstr "若無法回應此提問，將於 %i 秒內還原成之前的組態。"
 
 #. Insert the mode
 #: ../dialogs/display-settings/main.c:748
 #, c-format
 msgid "%.1f Hz"
-msgstr "%.1f Гц"
+msgstr "%.1f Hz"
 
 #: ../dialogs/display-settings/main.c:1041
 msgid "Display:"
-msgstr "Дисплей:"
+msgstr "顯示器："
 
 #: ../dialogs/display-settings/main.c:1046
 msgid "Resolution:"
-msgstr "Роздільна здатність:"
+msgstr "解像度："
 
 #: ../dialogs/display-settings/main.c:1233
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
-msgstr "Останній активний дисплей не повинен бути виключений, інакше система буде непридатною для використання."
+msgstr "無法停用最後一個活動中的輸出，否則系統將無法使用。"
 
 #: ../dialogs/display-settings/main.c:1235
 msgid "Selected output not disabled"
-msgstr "Вибраний вихід не відключено"
+msgstr "選取的輸出未停用"
 
 #: ../dialogs/display-settings/main.c:1975
 #: ../dialogs/display-settings/xfce-randr.c:350
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr "Неможливо запитати версію розширення RandR, що зараз використовується"
+msgstr "無法查詢正在使用中的 RandR 擴展版本"
 
 #: ../dialogs/display-settings/main.c:1976
 #: ../dialogs/display-settings/main.c:2012
 msgid "Unable to start the Xfce Display Settings"
-msgstr "Не можу запустити налаштування дисплею Xfce"
+msgstr "無法啟動 Xfce 顯示設定"
 
 #: ../dialogs/display-settings/main.c:2007
 msgid "ATI Settings"
-msgstr "Параметри ATI"
+msgstr "ATI 設定"
 
 #: ../dialogs/display-settings/main.c:2022
 msgid "Unable to launch the proprietary driver settings"
-msgstr "Не можу використати власні настройки драйвера"
+msgstr "無法啟動專有驅動程式設定值"
 
 #. 1.2 is required
 #: ../dialogs/display-settings/xfce-randr.c:358
@@ -687,23 +687,23 @@ msgstr "Не можу використати власні настройки д�
 msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
-msgstr "Ця система використовує RandR %d.%d. Щоб настройки дисплею працювали, необхідно хоча б версія 1.2"
+msgstr "本系統正在使用 RanR %d.%d。若要讓該顯示設定值運作，至少需要 1.2 版"
 
 #: ../dialogs/display-settings/xfce-randr.c:626
 msgid "Laptop"
-msgstr "Ноутбук"
+msgstr "手提電腦"
 
 #: ../dialogs/display-settings/xfce-randr.c:647
 msgid "Monitor"
-msgstr "Монітор"
+msgstr "螢幕"
 
 #: ../dialogs/display-settings/xfce-randr.c:650
 msgid "Television"
-msgstr "Телевізор"
+msgstr "電視"
 
 #: ../dialogs/display-settings/xfce-randr.c:654
 msgid "Digital display"
-msgstr "Цифровий дисплей"
+msgstr "數碼顯示器"
 
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
@@ -711,334 +711,334 @@ msgstr "Цифровий дисплей"
 #: ../dialogs/display-settings/display-name.c:269
 msgctxt "Monitor vendor"
 msgid "Unknown"
-msgstr "Невідомо"
+msgstr "不詳"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:108
 msgid "Shortcut Command"
-msgstr "Команда для ярлика запуску"
+msgstr "捷徑指令"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:147
 msgid "Enter the command you want to trigger with a shortcut."
-msgstr "Введіть команду для запуску з скороченням"
+msgstr "請輸入想要該捷徑鍵觸發的指令。"
 
 #. We are editing an existing shortcut
 #: ../dialogs/keyboard-settings/command-dialog.c:165
 msgid "Shortcut:"
-msgstr "Ярлик запуску:"
+msgstr "捷徑："
 
 #: ../dialogs/keyboard-settings/command-dialog.c:176
 msgid "Command:"
-msgstr "Команда:"
+msgstr "指令："
 
 #: ../dialogs/keyboard-settings/command-dialog.c:196
 msgid "Use _startup notification"
-msgstr "Використовувати пов_ідомлення при запуску"
+msgstr "使用啟動通知(_S)"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:243
 msgid "The command may not be empty."
-msgstr "Стрічка команди не може бути пустою."
+msgstr "指令不可以留空。"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:263
 msgid "Select command"
-msgstr "Вибрати команду"
+msgstr "選取指令"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:271
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:386
 msgid "All Files"
-msgstr "Всі файли"
+msgstr "所有檔案"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:276
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:391
 msgid "Executable Files"
-msgstr "Виконувані файли"
+msgstr "可執行檔"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:291
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:406
 msgid "Perl Scripts"
-msgstr "Скрипти Perl"
+msgstr "Perl 指令稿"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:297
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:412
 msgid "Python Scripts"
-msgstr "Скрипти Python"
+msgstr "Python 指令稿"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:303
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:418
 msgid "Ruby Scripts"
-msgstr "Скрипти Ruby"
+msgstr "Ruby 指令稿"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:309
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:424
 msgid "Shell Scripts"
-msgstr "Скрипти Shell"
+msgstr "Shell 指令稿"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
 msgid "Keyboard layout selection"
-msgstr "Вибір розкладки клавіатури"
+msgstr "鍵盤配置選取"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:2
 msgid "Select keyboard layout and variant"
-msgstr "Вибрати розкладку клавіатури і варіант розміщення клавіш"
+msgstr "選取鍵盤配置與變種"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:3
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
 msgid "Keyboard"
-msgstr "Клавіатура"
+msgstr "鍵盤"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Edit keyboard settings and application shortcuts"
-msgstr "Редагувати властивості клавіатури та ярликів запуску програм"
+msgstr "編輯鍵盤設定值與應用程式捷徑"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:5
 msgid "Restore num l_ock state on startup"
-msgstr "Відновлювати стан num lock під час запуску"
+msgstr "啟動時還原數字鎖 (numl_ock)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:6
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "General"
-msgstr "Загальне"
+msgstr "一般"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 msgid "_Enable key repeat"
-msgstr "Д_озволити повторення клавіш"
+msgstr "啟用按鍵重複(_E)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 msgid ""
 "When selected, pressing and holding down a key emits the same character over"
 " and over again"
-msgstr "Коли вибрано, натискання і утримування клавіші імітує той самий символ знову і знову"
+msgstr "當選取時，按一下按鍵或壓著按鍵不放時將不斷發送同一個字元"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "_Repeat delay:"
-msgstr "Затримка по_вторення:"
+msgstr "重複延遲(_R)："
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:10
 msgid "The time, in milliseconds, before a pressed key begins repeating"
-msgstr "Час в мілісекундах перед тим як натиснута клавіша почне повторюватись"
+msgstr "在按鍵按壓後與開始重複之間的時間，單位為毫秒"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "Repe_at speed:"
-msgstr "Швидк_ість повтору:"
+msgstr "重複速度(_A)："
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr "Частота при якій генеруються символи при натисканні"
+msgstr "當按鍵被按壓後產生按鍵效果的頻率"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Typing Settings"
-msgstr "Параметри вводу"
+msgstr "輸入設定"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "Show _blinking"
-msgstr "Показувати бл_имання"
+msgstr "顯示閃爍(_B)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Specify whether or not the text cursor blinks"
-msgstr "Визначитись чи потрібне блимання текстового курсору"
+msgstr "指定文字游標是否要閃爍"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Blink _delay:"
-msgstr "Затримка _блимання:"
+msgstr "閃爍延遲(_D)："
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "Затримка в мілісекундах між послідовним блиманням курсору"
+msgstr "介於游標連續閃爍間的延遲時間，單位為毫秒"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Cursor"
-msgstr "Вказівник"
+msgstr "游標"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "_Test area:"
-msgstr "_Поле перевірки:"
+msgstr "測試區域(_T)："
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Beha_vior"
-msgstr "_Поведінка"
+msgstr "行為(_V)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "Define shortcuts for la_unching applications:"
-msgstr "Призначення я_рликів для запуску програм:"
+msgstr "為應用程式啟動定義捷徑鍵(_U)："
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Reset to _Defaults"
-msgstr "Відновити _типові"
+msgstr "重設為預設值(_D)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "A_pplication Shortcuts"
-msgstr "_Ярлики програм"
+msgstr "應用程式捷徑鍵(_P)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 msgid "_Use system defaults"
-msgstr "Використовувати типові _системні"
+msgstr "使用系統預設值(_U)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 msgid ""
 "Specifies whether the keyboard layout is controlled with this settings "
 "dialog, or by the X server"
-msgstr "Визначитись чи розкладки клавіатури будуть контролюватись через діалог властивостей, чи через X сервер"
+msgstr "指定鍵盤配置是否由此設定值對話窗來控制，或是由 X 伺服器控制"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
 msgid "_Keyboard model"
-msgstr "_Модель клавіатури"
+msgstr "鍵盤型號(_K)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Change la_yout option"
-msgstr "Змінити оп_ції розкладки"
+msgstr "變更鍵盤配置選項(_Y)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "Co_mpose key"
-msgstr "Клавіша Compose"
+msgstr "編組按鍵(_M)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "Move currently selected item up by one row"
-msgstr "Перемістити поточний виділений елемент вверх на один рядок"
+msgstr "將目前所選的項目向上移動一列"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "Move currently selected item down by one row"
-msgstr "Перемістити поточний виділений елемент вниз на один рядок"
+msgstr "將目前所選的項目向下移動一列"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Key_board layout"
-msgstr "Розкла_дка клавіатури"
+msgstr "鍵盤配置(_B)"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "_Layout"
-msgstr "Розкла_дка"
+msgstr "配置(_L)"
 
 #: ../dialogs/keyboard-settings/main.c:82
 msgid "Unable to initialize GTK+."
-msgstr "Неможливо ініціалізувати GTK+."
+msgstr "無法初始化 GTK+。"
 
 #: ../dialogs/keyboard-settings/main.c:102
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
-msgstr "Неможливо з'єднатись з службою xfconf. Причина: %s"
+msgstr "未能連接 xfconf 幕後程式。原因：%s"
 
 #: ../dialogs/keyboard-settings/main.c:113
 msgid "Could not create the settings dialog."
-msgstr "Неможливо створити діалог властивостей."
+msgstr "無法建立設定對話窗。"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:397
 msgid "Command"
-msgstr "Команда"
+msgstr "指令"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:402
 msgid "Shortcut"
-msgstr "Ярлик запуску"
+msgstr "捷徑鍵"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:478
 msgid "Layout"
-msgstr "Розкладка"
+msgstr "配置"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:479
 msgid "Variant"
-msgstr "Варіант"
+msgstr "類型"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1002
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1106
 msgid "Shortcut command may not be empty."
-msgstr "Команда для ярлика запуску не може бути пустою."
+msgstr "捷徑指令不能是空白的。"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1272
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1273
 msgid "Reset to Defaults"
-msgstr "Відновити типові"
+msgstr "重設為預設值"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
-msgstr "Цим можна скинути всі ярлики запуску до їх типових значень.Ви дійсно хочете це зробити?"
+msgstr "這會將所有捷徑設定回它們的預設值。真的想要這麼做嗎？"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1353
 msgid "The system defaults will be restored next time you log in."
-msgstr "Типові системні установки будуть відновлені після наступного вашого входу."
+msgstr "下次登入時將還原系統預設值。"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1355
 msgid "Warning"
-msgstr "Попередження"
+msgstr "警告"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:128
 msgid "Select Application"
-msgstr "Вибрати програму"
+msgstr "選取應用程式"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:204
 msgid "Use a c_ustom command:"
-msgstr "Вибрати власну _команду:"
+msgstr "使用自訂指令(_U)："
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:205
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
-msgstr "Вибрати власну команду для програми, що не міститься в поданому списку програм."
+msgstr "為上述應用程式清單不存在的應用程式使用自訂的指令。"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:223
 msgid "_Browse..."
-msgstr "_Перегляд..."
+msgstr "瀏覽(_B)..."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:376
 msgid "Select an Application"
-msgstr "Вибрати програму"
+msgstr "選取應用程式"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:526
 msgid "None available"
-msgstr "Не доступно"
+msgstr "無可用"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:573
 msgid "Recommended Applications"
-msgstr "Рекомендовані програми"
+msgstr "建議的應用程式"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:591
 msgid "Other Applications"
-msgstr "Інші програми"
+msgstr "其他應用程式"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:611
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
-msgstr "Відкрити <i>%s</i> та інші файли типу \"%s\" з:"
+msgstr "開啟 <i>%s</i> 與其他「%s」類型的檔案，透過："
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:647
 #, c-format
 msgid "Failed to add new application \"%s\""
-msgstr "Неможливо додати нову програму \"%s\""
+msgstr "未能加入新的應用程式「%s」"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:174
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "MIME Type Editor"
-msgstr "Редактор типів MIME"
+msgstr "MIME 類型編輯器"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:178
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate applications with MIME types"
-msgstr "Прив’язати програму з типом MIME"
+msgstr "將應用程式與 MIME 類型之間建立關聯"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:203
 msgid "_Filter:"
-msgstr "_Фільтр:"
+msgstr "篩選(_F)："
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:211
 msgid "Clear filter"
-msgstr "Очистити фільтр"
+msgstr "清除篩選"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:257
 msgid "MIME Type"
-msgstr "Тип MIME"
+msgstr "MIME 類型"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:287
 msgid "Status"
-msgstr "Статус"
+msgstr "狀態"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:308
 msgid "Default Application"
-msgstr "Типова програма"
+msgstr "預設應用程式"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:479
 #: ../dialogs/mime-settings/xfce-mime-window.c:604
 msgid "User Set"
-msgstr "Налаштування користувача"
+msgstr "使用者設定"
 
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:481
@@ -1046,441 +1046,439 @@ msgstr "Налаштування користувача"
 #: ../dialogs/mouse-settings/main.c:366 ../dialogs/mouse-settings/main.c:368
 #: ../dialogs/mouse-settings/main.c:428
 msgid "Default"
-msgstr "Типовий"
+msgstr "預設"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:550
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
-msgstr[0] "%d MIME тип знайдено"
-msgstr[1] "%d MIME типи знайдено"
-msgstr[2] "%d MIMEтипи знайдено"
+msgstr[0] "找到 %d 種 MIME 類型"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:649
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr "Неможливо налаштувати програму \"%s\" для типу mime \"%s\"."
+msgstr "未能為 MIME 類型「%2$s」設定應用程式「%1$s」。"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:906
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
-msgstr "Ви впевнені, що бажаєте відновити вміст типу \"%s\" до типових значень?"
+msgstr "確定要重設內容類型「%s」為其預設值嗎？"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:910
 msgid "Question"
-msgstr "Питання"
+msgstr "問題"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:913
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
-msgstr "Це вилучить Ваші власні прив’язки mime і відновить типові системні значення."
+msgstr "這會移除您自訂的 MIME 關聯，且還原至全域的預設值。"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:917
 #: ../dialogs/mime-settings/xfce-mime-window.c:988
 msgid "Reset to Default"
-msgstr "Відновити типові"
+msgstr "重設為預設值"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:983
 msgid "Choose Application..."
-msgstr "Вибір програми..."
+msgstr "選擇應用程式..."
 
 #: ../dialogs/mouse-settings/main.c:78
 msgid "Active device in the dialog"
-msgstr "Активний пристрій в діалозі"
+msgstr "對話窗內活動中的裝置"
 
 #: ../dialogs/mouse-settings/main.c:78
 msgid "DEVICE NAME"
-msgstr "НАЗВА ПРИСТРОЮ"
+msgstr "裝置名稱"
 
 #. pixel value for some of the scales in the dialog
 #: ../dialogs/mouse-settings/main.c:124
 #, c-format
 msgid "%g px"
-msgstr "%g px"
+msgstr "%g 像素"
 
 #. miliseconds value for some of the scales in the dialog
 #: ../dialogs/mouse-settings/main.c:134
 #, c-format
 msgid "%g ms"
-msgstr "%g мс"
+msgstr "%g 毫秒"
 
 #. seconds value for some of the scales in the dialog
 #: ../dialogs/mouse-settings/main.c:145
 #, c-format
 msgid "%.1f s"
-msgstr "%.1f с"
+msgstr "%.1f 秒"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "Disabled"
-msgstr "Виключено"
+msgstr "停用"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
 msgid "Edge scrolling"
-msgstr "Прокрутка по краях"
+msgstr "邊緣捲動"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
 msgid "Two-finger scrolling"
-msgstr "Дво-пальцева прокрутка"
+msgstr "兩指捲動"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Circular scrolling"
-msgstr "Кругова прокрутка"
+msgstr "圓環捲動"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "None (right-handed)"
-msgstr "Нічого (для пр_авші)"
+msgstr "無 (慣用右手)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 msgid "Half (left-handed)"
-msgstr "Половина (для лівші)"
+msgstr "一半 (慣用左手)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "Clockwise"
-msgstr "За годинниковою стрілкою"
+msgstr "順時針"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "Counterclockwise"
-msgstr "Проти годинникової стрілки"
+msgstr "逆時針"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Mouse and Touchpad"
-msgstr "Миша і сенсорна панель"
+msgstr "滑鼠和觸控板"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Configure pointer device behavior and appearance"
-msgstr "Налаштувати поведінку і зовнішній вигляд вказівника миші"
+msgstr "設定指標裝置行為與外觀"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 msgid "De_vice:"
-msgstr "При_стрій:"
+msgstr "裝置(_V)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:12
 msgid "_Enable this device"
-msgstr "_Включити цей пристрій"
+msgstr "啟用這個裝置(_E)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:13
 msgid "Ri_ght-handed"
-msgstr "Для пр_авші"
+msgstr "慣用右手(_G)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "Le_ft-handed"
-msgstr "_Для лівші"
+msgstr "慣用左手(_F)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Reverse scroll d_irection"
-msgstr "Протилежний напря_м прокрутки"
+msgstr "反轉捲軸方向(_I)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr "Коли вибрано, прокрутка колеса буде працювати в зворотному напрямку"
+msgstr "當選取時，滑鼠滾輪將會以反方向運作"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Buttons"
-msgstr "Клавіші"
+msgstr "按鈕"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "Acceleratio_n:"
-msgstr "П_рискорення:"
+msgstr "加速度(_N)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr "Фактор, що впливає на збільшення швидкості вказівника при його переміщенні"
+msgstr "當滑鼠移動時會根據該因素增加速度"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
-msgstr "Кількість пікселів на які мусить зміститись вказівник за короткий період, перш ніж почнеться прискорення"
+msgstr "在開始加速前，指標一定要在一段短時間內移動的像素量"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid "Sensitivit_y:"
-msgstr "_Чутливість:"
+msgstr "靈敏度(_Y)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "_Reset to Defaults"
-msgstr "С_кинути на типові"
+msgstr "重設為預設值(_R)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
-msgstr "Встановити прискорення і поріг для вибраного пристрою на типові значення"
+msgstr "將所選裝置的加速度與靈敏度設為預設值"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid "Pointer Speed"
-msgstr "Покажчик швидкості"
+msgstr "指標速度"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid "B_uttons and Feedback"
-msgstr "_Клавіші та зворотній зв’язок"
+msgstr "按鈕與回饋(_U)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "Disable touchpad _while typing"
-msgstr "Відключити сенсорну панель при _набиранні"
+msgstr "打字時停用觸控板(_W)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
-msgstr "Коли вибрано, сенсорну панель буде відключено і включено клавіатуру"
+msgstr "當選取，使用鍵盤時會停用觸控板"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "Duratio_n:"
-msgstr "Триваліс_ть:"
+msgstr "時間(_N)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid "Tap touchpad to clic_k"
-msgstr "Торкніться сенсорної панелі для _клацання"
+msgstr "輕觸觸控板來點擊(_K)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Scrolling _mode:"
-msgstr "Ре_жим прокрутки:"
+msgstr "捲動模式(_M)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "Enable hori_zontal scrolling"
-msgstr "Увімкнут_и горизонтальну прокрутку"
+msgstr "啟用水平捲動(_Z)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "Scrolling"
-msgstr "Прокрутка"
+msgstr "捲動"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "T_ouchpad"
-msgstr "Се_нсорна панель"
+msgstr "觸控板(_O)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "Trac_king mode:"
-msgstr "Режим т_рекінгу:"
+msgstr "追蹤模式(_K)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "_Rotation:"
-msgstr "Об_ертання:"
+msgstr "旋轉(_R)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Tab_let"
-msgstr "_Таблет"
+msgstr "繪圖板(_L)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "_Devices"
-msgstr "При_строї"
+msgstr "裝置(_D)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Th_reshold:"
-msgstr "По_ріг:"
+msgstr "閾值(_R)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
-msgstr "Кількість пікселів на які мусить зміститись вказівник, перш ніж почнеться операція пересування"
+msgstr "在拖曳動作開始前，指標一定要移動的像素量"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "Drag and Drop"
-msgstr "Перетягування"
+msgstr "拖放"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid "Ti_me:"
-msgstr "Ч_ас:"
+msgstr "時間(_M)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
-msgstr "Два клацання миші за короткий період часу (в мілісекундах) яке буде вважатись за подвійне клацання"
+msgstr "少於此時間 (單位為毫秒) 的兩個滑鼠點擊將被視為雙擊滑鼠"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "D_istance:"
-msgstr "_Відстань:"
+msgstr "距離(_I)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:45
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
-msgstr "Вказівник миші не зможе переміститись вище цієї відстані ніж між два клацання для нього будуть означати подвійне клацання"
+msgstr "在兩個滑鼠點擊動作之間，指標不移動超過此距離才會判斷為雙擊"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "Double Click"
-msgstr "Подвійне клацання"
+msgstr "雙擊滑鼠"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid "_Behavior"
-msgstr "_Поведінка"
+msgstr "行為(_B)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid "Cursor si_ze:"
-msgstr "Розмір _курсору:"
+msgstr "游標大小(_Z)："
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "Size"
-msgstr "Розмір"
+msgstr "大小"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "Preview"
-msgstr "Попередній перегляд"
+msgstr "預覽"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid "_Theme"
-msgstr "Т_ема"
+msgstr "佈景主題(_T)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:52
 msgid "Pen (absolute)"
-msgstr "Олівець (абсолютно)"
+msgstr "數碼筆 (絕對)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
 msgid "Mouse (relative)"
-msgstr "Миша (відносно)"
+msgstr "滑鼠 (相對)"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:184
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
 msgid "Settings Editor"
-msgstr "Редактор параметрів"
+msgstr "設定編輯器"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:185
 msgid "Customize settings stored by Xfconf"
-msgstr "Упорядкувати властивості збережені через Xfconf"
+msgstr "自訂 Xfconf 儲存的設定"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:230
 msgid "Channel"
-msgstr "Канал"
+msgstr "通道"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:264
 msgid "Property"
-msgstr "Властивість"
+msgstr "屬性"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:271
 msgid "Type"
-msgstr "Тип"
+msgstr "類型"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:278
 msgid "Locked"
-msgstr "Заблоковано"
+msgstr "鎖上"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:285
 msgid "Value"
-msgstr "Значення"
+msgstr "值"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:302
 msgid "New property"
-msgstr "Нова властивість"
+msgstr "新增屬性"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:313
 msgid "Edit selected property"
-msgstr "Редагувати вибрану властивість"
+msgstr "編輯所選屬性"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:321
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1026
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1369
 msgid "_Reset"
-msgstr "_Відновити"
+msgstr "重設(_R)"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:324
 msgid "Reset selected property"
-msgstr "Відновити вибрану властивість"
+msgstr "重設所選屬性"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:448
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:539
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:658
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "Empty"
-msgstr "Пусто"
+msgstr "空"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:451
 msgid "Array"
-msgstr "Масив"
+msgstr "陣列"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:456
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
 msgid "String"
-msgstr "Рядок"
+msgstr "字串"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:464
 msgid "Integer"
-msgstr "Ціле"
+msgstr "整數"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:467
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
 msgid "Boolean"
-msgstr "Двійковий"
+msgstr "真假值"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:470
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
 msgid "Double"
-msgstr "Подвійний"
+msgstr "倍精度"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:804
 msgid "_Reset Channel"
-msgstr "_Відновити Канал"
+msgstr "重設通道(_R)"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:805
 msgid "Resetting a channel will permanently remove those custom settings."
-msgstr "Відновлення каналу повністю видалить встановлені параметри."
+msgstr "重設通道會永久移除那些自訂設定。"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:806
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr "Ви впевнені, що хочете відновити канал \"%s\" і всі його властивості?"
+msgstr "確定要重設「%s」通道與其全部屬性？"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:881
 msgid "reset"
-msgstr "відновити"
+msgstr "重設"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:938
 #, c-format
 msgid "Monitor %s"
-msgstr "Монітор %s"
+msgstr "螢幕  %s"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:946
 msgid "Watch an Xfconf channel for property changes"
-msgstr "Слідкувати за каналом Xfconf для змін у властивості"
+msgstr "監看 Xfconf 通道以瞭解屬性變動"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:982
 #, c-format
 msgid "start monitoring channel \"%s\""
-msgstr "почати слідкувати за каналом \"%s\""
+msgstr "停止監視「%s」通道"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1036
 msgid "_Monitor"
-msgstr "_Монітор"
+msgstr "螢幕(_M)"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1370
 msgid "Resetting a property will permanently remove those custom settings."
-msgstr "відновити властивості дозволить повністю видалити встановлені параметри."
+msgstr "重設屬性會永久移除那些自訂設定。"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-dialog.c:1371
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
-msgstr "Ви впевнені, що хочете відновити властивість \"%s\"?"
+msgstr "確定要重設「%s」屬性嗎？"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Int"
-msgstr "Int"
+msgstr "整數"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
 msgid "Unsigned Int"
-msgstr "Беззнаковий Int"
+msgstr "無負號整數"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
 msgid "Int64"
-msgstr "Int64"
+msgstr "整數64"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:97
 msgid "Unsigned Int64"
-msgstr "Беззнаковий Int64"
+msgstr "無負號整數64"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
 msgid "New Property"
-msgstr "Нова властивість"
+msgstr "新增屬性"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:158
 msgid "_Property:"
-msgstr "_Властивість"
+msgstr "屬性(_P)："
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:173
 msgid "_Type:"
-msgstr "_Тип:"
+msgstr "類型(_T)："
 
 #. strings
 #. integers
@@ -1489,127 +1487,127 @@ msgstr "_Тип:"
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:215
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:227
 msgid "_Value:"
-msgstr "_Значення:"
+msgstr "值(_V)："
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:385
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Назва властивості повинна починатись з символу '/'"
+msgstr "屬性名稱必須以 '/' 字元作開頭"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "Основний елемент ('/') не є правильною назвою властивості"
+msgstr "根元素 ('/') 不是有效的屬性名稱"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:412
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr "Назви властивостей можуть включати тільки символи ASCII A-Z, a-z, 0-9, '_', '-', '<' і '>', розділені символом '/'"
+msgstr "屬性名稱只能包含 ASCII 字元 A-Z、a-z、0-9、'_'、'-'、'<'、'>'，而 '/' 作為分隔符"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:425
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Назви властивостей не можуть включати дві або більше продовжуваних символів '/'"
+msgstr "屬性名稱不能有連續兩個或以上的 '/' 字元"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:439
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Назви властивостей не можуть закінчуватись символом '/'"
+msgstr "屬性名稱不能以 '/' 字元作結尾"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:652
 msgid "Edit Property"
-msgstr "Редагувати властивість"
+msgstr "編輯屬性"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
 msgid "Graphical settings editor for Xfconf"
-msgstr "Графічний редактор параметрів для Xfconf"
+msgstr "Xfconf 的圖像化設定編輯器"
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
-msgstr "Липкі клавіші увімкнуто"
+msgstr "啟用相黏鍵"
 
 #: ../xfsettingsd/accessibility.c:414
 msgid "Sticky keys are disabled"
-msgstr "Липкі клавіші вимкнено"
+msgstr "停用相黏鍵"
 
 #: ../xfsettingsd/accessibility.c:416
 msgid "Sticky keys"
-msgstr "Липкі клавіші"
+msgstr "相黏鍵"
 
 #: ../xfsettingsd/accessibility.c:421
 msgid "Slow keys are enabled"
-msgstr "Повільні клавіші увімкнуто"
+msgstr "啟用緩速鍵"
 
 #: ../xfsettingsd/accessibility.c:423
 msgid "Slow keys are disabled"
-msgstr "Повільні клавіші вимкнено"
+msgstr "停用緩速鍵"
 
 #: ../xfsettingsd/accessibility.c:425
 msgid "Slow keys"
-msgstr "Повільні клавіші"
+msgstr "緩速鍵"
 
 #: ../xfsettingsd/accessibility.c:430
 msgid "Bounce keys are enabled"
-msgstr "Спеціальні клавіші увімкнуто"
+msgstr "啟用彈回鍵"
 
 #: ../xfsettingsd/accessibility.c:432
 msgid "Bounce keys are disabled"
-msgstr "Спеціальні клавіші вимкнено"
+msgstr "停用彈回鍵"
 
 #: ../xfsettingsd/accessibility.c:434
 msgid "Bounce keys"
-msgstr "Спеціальні клавіші"
+msgstr "彈回鍵"
 
 #: ../xfsettingsd/keyboard-shortcuts.c:244
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
-msgstr "Неможливо запустити скорочення \"%s\""
+msgstr "無法啟動捷徑鍵「%s」"
 
 #: ../xfsettingsd/main.c:78
 msgid "Do not fork to the background"
-msgstr "Не переходити у фоновий режим"
+msgstr "不要分叉至背景"
 
 #: ../xfsettingsd/main.c:79
 msgid "Replace running xsettings daemon (if any)"
-msgstr "Замінити запущену службу xsettings (якщо наявна)"
+msgstr "取代正在執行中的 xsettings 幕後程式 (如果有的話)"
 
 #: ../xfsettingsd/workspaces.c:385
 #, c-format
 msgid "Workspace %d"
-msgstr "Робоча область %d"
+msgstr "工作區 %d"
 
 #: ../xfsettingsd/xfsettingsd.desktop.in.h:1
 msgid "The Xfce Settings Daemon"
-msgstr "Демон параметрів Xfce"
+msgstr "Xfce 4 設定幕後程式"
 
 #: ../xfce4-settings-manager/main.c:41
 msgid "Settings dialog to show"
-msgstr "Діалог властивостей для показу"
+msgstr "要顯示的設定對話窗"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:192
 msgid "All _Settings"
-msgstr "_Всі параметри"
+msgstr "所有設定(_S)"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:386
 msgid "Settings"
-msgstr "Параметри"
+msgstr "設定"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:388
 msgid "Customize your desktop"
-msgstr "Налаштувати Вашу стільницю"
+msgstr "自訂您的桌面"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:878
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:889
 #, c-format
 msgid "Unable to start \"%s\""
-msgstr "Неможливо запустити \"%s\""
+msgstr "無法啟動「%s」"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
 msgid "Settings Manager"
-msgstr "Менеджер параметрів"
+msgstr "設定管理員"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Graphical Settings Manager for Xfce 4"
-msgstr "Графічний менеджер параметрів для Xfce 4"
+msgstr "Xfce 4 的圖像化設定管理員"

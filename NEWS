@@ -1,3 +1,37 @@
+4.11.1
+======
+- Automatically re-enable Laptop-displays if all other displays
+  get disconnected.
+- Add option to automatically show minimal-display dialog when new
+  display gets connected.
+- Fix bugs with mnemonic accelerators (bugs #9302 and #9308).
+- Rework accelerators (bugs #9302 and #9308).
+- Autotools updates.
+- Make touchpad type delay configurable (bug #8948).
+- Mention no cache file for icon themes.
+- Translation updates: Arabic, Asturian, Bulgarian, Bengali, Catalan
+  (Valencian), Czech, Danish, German, Greek, English (United Kingdom),
+  Spanish (Castilian), Basque, Finnish, French, Galician, Hebrew,
+  Croatian, Hungarian, Indonesian, Icelandic, Italian, Japanese,
+  Kazakh, Korean, Lithuanian, Latvian, Norwegian Bokmal, Dutch
+  (Flemish), Norwegian Nynorsk, Panjabi (Punjabi), Polish, Portuguese,
+  Portuguese (Brazilian), Romanian, Russian, Sinhala, Slovak, Serbian,
+  Swedish, Telugu, Thai, Turkish, Uyghur, Ukrainian, Urdu, Urdu
+  (Pakistan), Chinese (China), Chinese (Taiwan).
+
+4.11.0
+======
+- Support circular scrolling in the synaptics settings.
+- Make sure AccessXKeys control is disabled by default.
+- Lots of improvements in XKB code.
+- Xsettingsd: Unset input method properties (bug #5437).
+- Xfsettingsd: Check service name of NameOwnerChanged (bug #9273).
+- Appearance: Fix gtk3 theme detection in install script (bug #9272).
+- Show Strv arrays in the xfconf settings editor renderer.
+- Lot of improvements in the display code: support extended desktop
+  mode for 2 monitors, improve minimal dialog.
+- Xfsettingsd: Check for NoSuchExtension (bug #9390).
+
 4.10.0
 ======
 - Use the more generic application-x-executable icon for MIME editor.

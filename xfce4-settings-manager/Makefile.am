@@ -1,4 +1,4 @@
-INCLUDES = \
+AM_CPPFLAGS = \
 	-I${top_srcdir} \
 	-DMENUFILE=\"$(sysconfdir)/xdg/menus/xfce-settings-manager.menu\" \
 	-DLOCALEDIR=\"$(localedir)\" \
@@ -20,6 +20,7 @@ xfce4_settings_manager_CFLAGS = \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
 	$(GARCON_CFLAGS) \
+	$(XFCONF_CFLAGS) \
 	$(EXO_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
@@ -31,6 +32,7 @@ xfce4_settings_manager_LDADD = \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
+	$(XFCONF_LIBS) \
 	$(EXO_LIBS) \
 	$(GARCON_LIBS)
 
