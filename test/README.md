@@ -29,4 +29,3 @@ While testing you can usually:
 * continue with <ENTER>
 * indicate a problem by typing ```!``` and <ENTER>
 * indicate a problem and adding a comment by typing ```!``` followed by you comment and <ENTER>
-* just add a hint by writing your message (not starting with ```!```) followed by <ENTER>
