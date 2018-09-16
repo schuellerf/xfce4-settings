@@ -28,4 +28,4 @@ and follow the instructions.
 While testing you can usually:
 * continue with ```<ENTER>```
 * indicate a problem by typing ```!``` and ```<ENTER>```
-* indicate a problem and adding a comment by typing ```!``` followed by you comment and ```<ENTER>```
+* indicate a problem and add a hint what is wrong by typing ```!``` followed by your comment and ```<ENTER>```
