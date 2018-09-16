@@ -26,6 +26,6 @@ behave --tags onemonitor --outfile $(git describe)-test-$(date +%F-%T).log
 and follow the instructions.
 
 While testing you can usually:
-* continue with <ENTER>
-* indicate a problem by typing ```!``` and <ENTER>
-* indicate a problem and adding a comment by typing ```!``` followed by you comment and <ENTER>
+* continue with ```<ENTER>```
+* indicate a problem by typing ```!``` and ```<ENTER>```
+* indicate a problem and adding a comment by typing ```!``` followed by you comment and ```<ENTER>```
