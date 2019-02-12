@@ -18,6 +18,7 @@ xfce4_color_settings_SOURCES = \
 xfce4_color_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(COLORD_CFLAGS) \
+	$(LCMS2_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
@@ -35,6 +36,7 @@ xfce4_color_settings_LDFLAGS = \
 xfce4_color_settings_LDADD = \
 	$(GTK_LIBS) \
 	$(COLORD_LIBS) \
+	$(LCMS2_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS)
 

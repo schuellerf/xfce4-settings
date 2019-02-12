@@ -26,6 +26,7 @@
 #endif
 
 #include <colord.h>
+#include <lcms2.h>
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
@@ -161,6 +162,11 @@ color_settings_profile_import_cb (GtkWidget *widget,
     g_autoptr(GError) error = NULL;
     g_autoptr(CdProfile) profile = NULL;
     gboolean ret = FALSE;
+    CdIcc *icc = NULL;
+    char id[37]; /* "icc-" plus MD5 */
+    cmsHPROFILE p_handle;
+    cmsProfileID p_id;
+    int i;
 
     file = color_settings_file_chooser_get_icc_profile (settings);
     if (file == NULL)
@@ -178,10 +184,41 @@ color_settings_profile_import_cb (GtkWidget *widget,
                                              &error);
     if (profile == NULL)
     {
-        g_warning ("failed to get imported profile: %s", error->message);
-        return;
+        if (strstr(error->message, "already exists") == NULL)
+        {
+            g_warning ("failed to get imported profile: %s", error->message);
+            return;
+	    } /* else - just continue importing if the file already exists */
+        g_error_free(error);
+        error = NULL;
+
+        /* try finding an already existing profile with the MD5 sum of the selected ICC file */
+        icc = cd_icc_new ();
+        ret = cd_icc_load_file (icc,
+                                file,
+                                CD_ICC_LOAD_FLAGS_METADATA,
+                                settings->cancellable,
+                                &error);
+
+        p_handle = cd_icc_get_handle(icc);
+        cmsGetHeaderProfileID(p_handle,p_id.ID8);
+
+        sprintf(id, "icc-");
+        for (i = 0; i < 16; i++) {
+            sprintf(&id[i*2+4], "%02x", p_id.ID8[i]);
+        }
+
+        profile = cd_client_find_profile_sync(settings-> client,
+                                                           id,
+                                                           settings->cancellable,
+                                                           &error);
     }
 #endif
+    if (profile == NULL)
+    {
+        g_warning ("failed to load profile: %s", error->message);
+        return;
+    }
 
     /* just add it, the list store will get ::changed */
     ret = cd_device_add_profile_sync (settings->current_device,
