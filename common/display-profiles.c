@@ -44,6 +44,7 @@ display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_p
 {
     GHashTable *properties;
     GList *channel_contents, *current;
+    gboolean ret = TRUE;
 
     properties = xfconf_channel_get_properties (channel, NULL);
     channel_contents = g_hash_table_get_keys (properties);
@@ -52,21 +53,31 @@ display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_p
     current = g_list_first (channel_contents);
     while (current)
     {
+        gchar *profile_name_xfconf;
         gchar **current_elements = g_strsplit (current->data, "/", -1);
+        gint num_parts = get_size (current_elements);
+        g_strfreev (current_elements);
 
-        if (get_size (current_elements) != 2)
+        if (num_parts != 2)
         {
-            g_strfreev (current_elements);
             current = g_list_next (current);
             continue;
         }
+        
+        profile_name_xfconf = xfconf_channel_get_string (channel, current->data, NULL);
 
-        if (g_strcmp0 (new_profile_name, xfconf_channel_get_string (channel, current->data, NULL)) == 0)
-            return FALSE;
+        if (g_strcmp0 (new_profile_name, profile_name_xfconf) == 0) {
+            g_free(profile_name_xfconf);
+            ret = FALSE;
+            break;
+        }
+        g_free(profile_name_xfconf);
 
         current = g_list_next (current);
     }
-    return TRUE;
+    g_list_free(channel_contents);
+    g_hash_table_destroy(properties);
+    return ret;
 }
 
 GList*
@@ -170,6 +181,7 @@ display_settings_get_profiles (XfceRandr *xfce_randr, XfconfChannel *channel)
     }
     g_free (display_infos);
     g_list_free (channel_contents);
+    g_hash_table_destroy(properties);
 
     return profiles;
 }
