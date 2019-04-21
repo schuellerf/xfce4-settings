@@ -1404,7 +1404,7 @@ display_settings_profile_list_populate (GtkBuilder *builder)
     }
 
     /* Release the store */
-    g_list_free (profiles);
+    g_list_free_full (profiles, g_free);
     g_object_unref (G_OBJECT (store));
 }
 
@@ -2949,6 +2949,7 @@ on_output_event (FooScrollArea      *area,
     if (event->type == FOO_BUTTON_PRESS)
     {
         GrabInfo *info;
+        gchar    *tool_tip;
 
         gtk_combo_box_set_active (GTK_COMBO_BOX (randr_outputs_combobox), output->id);
 
@@ -2962,7 +2963,9 @@ on_output_event (FooScrollArea      *area,
             info->output_x = output->x;
             info->output_y = output->y;
 
-            set_monitors_tooltip (g_strdup_printf(_("(%i, %i)"), output->x, output->y) );
+            tool_tip = g_strdup_printf(_("(%i, %i)"), output->x, output->y);
+            set_monitors_tooltip (tool_tip);
+            g_free(tool_tip);
 
             output->user_data = info;
         }
@@ -3600,6 +3603,7 @@ display_settings_show_main_dialog (GdkDisplay *display)
         gtk_main ();
 
         gtk_widget_destroy (dialog);
+        g_free(app);
     }
     else
     {
