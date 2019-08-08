@@ -44,6 +44,7 @@ display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_p
 {
     GHashTable *properties;
     GList *channel_contents, *current;
+    gboolean ret = TRUE;
 
     properties = xfconf_channel_get_properties (channel, NULL);
     channel_contents = g_hash_table_get_keys (properties);
@@ -61,14 +62,18 @@ display_settings_profile_name_exists (XfconfChannel *channel, const gchar *new_p
             continue;
         }
 
-        if (g_strcmp0 (new_profile_name, xfconf_channel_get_string (channel, current->data, NULL)) == 0)
-            return FALSE;
+        g_strfreev (current_elements);
+
+        if (g_strcmp0 (new_profile_name, xfconf_channel_get_string (channel, current->data, NULL)) == 0) {
+            ret = FALSE;
+            break;
+        }
 
         current = g_list_next (current);
     }
     g_list_free (channel_contents);
     g_hash_table_destroy (properties);
-    return TRUE;
+    return ret;
 }
 
 GList*
