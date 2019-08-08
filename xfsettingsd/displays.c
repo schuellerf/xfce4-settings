@@ -444,7 +444,7 @@ xfce_displays_helper_get_display_infos (gint      noutput,
     gint       m;
     guint8    *edid_data;
 
-    display_infos = g_new0 (gchar *, noutput);
+    display_infos = g_new0 (gchar *, noutput + 1);
     /* get all display edids, to only query randr once */
     for (m = 0; m < noutput; ++m)
     {
@@ -452,7 +452,10 @@ xfce_displays_helper_get_display_infos (gint      noutput,
 
         if (edid_data)
             display_infos[m] = g_compute_checksum_for_data (G_CHECKSUM_SHA1 , edid_data, 128);
+        else
+            display_infos[m] = g_strdup("");
     }
+    display_infos[noutput] = NULL;
     return display_infos;
 }
 
