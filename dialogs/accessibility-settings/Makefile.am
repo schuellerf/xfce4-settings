@@ -8,7 +8,8 @@ AM_CPPFLAGS = \
 
 bin_PROGRAMS = \
 	xfce4-accessibility-settings \
-	xfce4-find-cursor
+	xfce4-find-cursor \
+	xfce4-tiling-helper
 
 xfce4_find_cursor_SOURCES = \
   find-cursor.c
@@ -31,6 +32,29 @@ xfce4_find_cursor_LDFLAGS = \
 xfce4_find_cursor_LDADD = \
 	$(GTK_LIBS) \
 	$(XFCONF_LIBS)
+
+xfce4_tiling_helper_SOURCES = \
+  tiling-helper.c
+
+xfce4_tiling_helper_CFLAGS = \
+	$(GTK_CFLAGS) \
+	$(XFCONF_CFLAGS) \
+	$(PLATFORM_CFLAGS) \
+    -DGTK_DISABLE_SINGLE_INCLUDES \
+    -DGDK_DISABLE_DEPRECATED \
+    -DGTK_DISABLE_DEPRECATED \
+    -DGSEAL_ENABLE \
+    -DGDK_PIXBUF_DISABLE_DEPRECATED \
+    -DG_DISABLE_DEPRECATED
+
+xfce4_tiling_helper_LDFLAGS = \
+	-no-undefined \
+	$(PLATFORM_LDFLAGS)
+
+xfce4_tiling_helper_LDADD = \
+	$(GTK_LIBS) \
+	$(XFCONF_LIBS) \
+	$(top_builddir)/common/libxfce4-settings.la
 
 xfce4_accessibility_settings_SOURCES = \
 	main.c \

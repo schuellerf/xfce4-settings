@@ -55,6 +55,7 @@ xfce4-settings-*.tar.bz2
 # binaries
 dialogs/accessibility-settings/xfce4-accessibility-settings
 dialogs/accessibility-settings/xfce4-find-cursor
+dialogs/accessibility-settings/xfce4-tiling-helper
 dialogs/appearance-settings/xfce4-appearance-settings
 dialogs/color-settings/xfce4-color-settings
 dialogs/display-settings/xfce4-display-settings
