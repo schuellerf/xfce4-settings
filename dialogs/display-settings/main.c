@@ -179,17 +179,17 @@ static GHashTable *display_ratio = NULL;
 /* most prominent ratios */
 static XfceRatio ratio_table[] = {
     { 16.0/9.0, "16/9" },
-    { _ONE_DIGIT_PRECISION(16.0/9.0), "16/9" },
-    { _TWO_DIGIT_PRECISION(16.0/9.0), "16/9" },
+    { _ONE_DIGIT_PRECISION(16.0/9.0), "~16/9" },
+    { _TWO_DIGIT_PRECISION(16.0/9.0), "~16/9" },
     { 16.0/10.0, "16/10" },
-    { _ONE_DIGIT_PRECISION(16.0/10.0), "16/10" },
-    { _TWO_DIGIT_PRECISION(16.0/10.0), "16/10" },
+    { _ONE_DIGIT_PRECISION(16.0/10.0), "~16/10" },
+    { _TWO_DIGIT_PRECISION(16.0/10.0), "~16/10" },
     { 4.0/3.0, "4/3" },
     /* _ONE_DIGIT_PRECISION(4.0/3.0) would be mixed up with 5/4 */
-    { _TWO_DIGIT_PRECISION(4.0/3.0), "4/3" },
+    { _TWO_DIGIT_PRECISION(4.0/3.0), "~4/3" },
     { 21.0/9.0, "21/9" },
-    { _ONE_DIGIT_PRECISION(21.0/9.0), "21/9" },
-    { _TWO_DIGIT_PRECISION(21.0/9.0), "21/9" },
+    { _ONE_DIGIT_PRECISION(21.0/9.0), "~21/9" },
+    { _TWO_DIGIT_PRECISION(21.0/9.0), "~21/9" },
     { 0.0 , NULL }
 };
 
@@ -710,7 +710,7 @@ display_setting_resolutions_populate (GtkBuilder *builder)
                 rough_ratio = _TWO_DIGIT_PRECISION(ratio);
                 ratio_text = g_hash_table_lookup (display_ratio, &rough_ratio);
                 if (ratio_text)
-                    ratio_text = g_strdup_printf("~%s", ratio_text);
+                    ratio_text = g_strdup_printf("%s", ratio_text);
             }
 
             if (! ratio_text)
@@ -718,7 +718,7 @@ display_setting_resolutions_populate (GtkBuilder *builder)
                 rough_ratio = _ONE_DIGIT_PRECISION(ratio);
                 ratio_text = g_hash_table_lookup (display_ratio, &rough_ratio);
                 if (ratio_text)
-                    ratio_text = g_strdup_printf("~%s", ratio_text);
+                    ratio_text = g_strdup_printf("%s", ratio_text);
             }
 
             if (! ratio_text)
