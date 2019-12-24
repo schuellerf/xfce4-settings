@@ -695,39 +695,35 @@ display_setting_resolutions_populate (GtkBuilder *builder)
         {
 
             /* Insert the mode */
-            guint gcd_tmp = gcd(modes[n].width, modes[n].height);
-            guint format_x = modes[n].width / gcd_tmp;
-            guint format_y = modes[n].height / gcd_tmp;
-            gdouble ratio = (double)format_x/(double)format_y;
+            gdouble ratio = (double)modes[n].width/(double)modes[n].height;
             gdouble rough_ratio;
             gchar * ratio_text = g_hash_table_lookup (display_ratio, &ratio);
-
-            if (ratio_text)
-                ratio_text = g_strdup(ratio_text);
 
             if (! ratio_text)
             {
                 rough_ratio = _TWO_DIGIT_PRECISION(ratio);
                 ratio_text = g_hash_table_lookup (display_ratio, &rough_ratio);
-                if (ratio_text)
-                    ratio_text = g_strdup_printf("%s", ratio_text);
             }
 
             if (! ratio_text)
             {
                 rough_ratio = _ONE_DIGIT_PRECISION(ratio);
                 ratio_text = g_hash_table_lookup (display_ratio, &rough_ratio);
-                if (ratio_text)
-                    ratio_text = g_strdup_printf("%s", ratio_text);
             }
 
             if (! ratio_text)
             {
-                ratio_text = g_strdup_printf("%d/%d", format_x, format_y);
+                guint gcd_tmp = gcd(modes[n].width, modes[n].height);
+                guint format_x = modes[n].width / gcd_tmp;
+                guint format_y = modes[n].height / gcd_tmp;
+                name = g_strdup_printf ("%dx%d (%d/%d - %.3f)", modes[n].width,
+                                        modes[n].height, format_x, format_y, ratio);
             }
-            name = g_strdup_printf ("%dx%d (%s - %.3f)", modes[n].width,
-                                    modes[n].height, ratio_text, ratio);
-            g_free(ratio_text);
+            else
+            {
+                name = g_strdup_printf ("%dx%d (%s - %.3f)", modes[n].width,
+                                        modes[n].height, ratio_text, ratio);
+            }
             gtk_list_store_append (GTK_LIST_STORE (model), &iter);
             gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                                 COLUMN_COMBO_NAME, name,
