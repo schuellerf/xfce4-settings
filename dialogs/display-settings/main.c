@@ -168,6 +168,7 @@ typedef struct _XfceRatio XfceRatio;
 
 struct _XfceRatio
 {
+    gboolean precise;
     gdouble ratio;
     const gchar *desc;
 };
@@ -177,20 +178,21 @@ static GHashTable *display_ratio = NULL;
 #define _TWO_DIGIT_PRECISION(x) ((gdouble)((gint)((x)*100.0+0.5))/100.0)
 
 /* most prominent ratios */
+/* adding in least exact order to find most precise */
 static XfceRatio ratio_table[] = {
-    { 16.0/9.0, "16/9" },
-    { _ONE_DIGIT_PRECISION(16.0/9.0), "~16/9" },
-    { _TWO_DIGIT_PRECISION(16.0/9.0), "~16/9" },
-    { 16.0/10.0, "16/10" },
-    { _ONE_DIGIT_PRECISION(16.0/10.0), "~16/10" },
-    { _TWO_DIGIT_PRECISION(16.0/10.0), "~16/10" },
-    { 4.0/3.0, "4/3" },
+    { FALSE, _ONE_DIGIT_PRECISION(16.0/9.0), "~16/9" },
+    { FALSE, _TWO_DIGIT_PRECISION(16.0/9.0), "~16/9" },
+    { TRUE, 16.0/9.0, "16/9" },
+    { FALSE, _ONE_DIGIT_PRECISION(16.0/10.0), "~16/10" },
+    { FALSE, _TWO_DIGIT_PRECISION(16.0/10.0), "~16/10" },
+    { TRUE, 16.0/10.0, "16/10" },
     /* _ONE_DIGIT_PRECISION(4.0/3.0) would be mixed up with 5/4 */
-    { _TWO_DIGIT_PRECISION(4.0/3.0), "~4/3" },
-    { 21.0/9.0, "21/9" },
-    { _ONE_DIGIT_PRECISION(21.0/9.0), "~21/9" },
-    { _TWO_DIGIT_PRECISION(21.0/9.0), "~21/9" },
-    { 0.0 , NULL }
+    { FALSE, _TWO_DIGIT_PRECISION(4.0/3.0), "~4/3" },
+    { TRUE, 4.0/3.0, "4/3" },
+    { FALSE, _ONE_DIGIT_PRECISION(21.0/9.0), "~21/9" },
+    { FALSE, _TWO_DIGIT_PRECISION(21.0/9.0), "~21/9" },
+    { TRUE, 21.0/9.0, "21/9" },
+    { FALSE, 0.0 , NULL }
 };
 
 static void display_settings_minimal_only_display1_toggled   (GtkToggleButton *button,
@@ -697,21 +699,42 @@ display_setting_resolutions_populate (GtkBuilder *builder)
             /* Insert the mode */
             gdouble ratio = (double)modes[n].width/(double)modes[n].height;
             gdouble rough_ratio;
-            gchar * ratio_text = g_hash_table_lookup (display_ratio, &ratio);
+            gchar * ratio_text = NULL;
+            XfceRatio * ratio_info = g_hash_table_lookup (display_ratio, &ratio);
 
-            if (! ratio_text)
+            if (ratio_info)
+                ratio_text = g_strdup(ratio_info->desc);
+
+            if (! ratio_info)
             {
                 rough_ratio = _TWO_DIGIT_PRECISION(ratio);
-                ratio_text = g_hash_table_lookup (display_ratio, &rough_ratio);
+                ratio_info = g_hash_table_lookup (display_ratio, &rough_ratio);
+                if (ratio_info)
+                {
+                    /* if the lookup finds a precise ratio
+                     * although we did round the current ratio
+                     * we also mark this as not precise */
+                    if (ratio_info->precise)
+                        ratio_text = g_strdup_printf("~%s", ratio_info->desc);
+                    else
+                        ratio_text = g_strdup(ratio_info->desc);
+                }
             }
 
-            if (! ratio_text)
+            if (! ratio_info)
             {
                 rough_ratio = _ONE_DIGIT_PRECISION(ratio);
-                ratio_text = g_hash_table_lookup (display_ratio, &rough_ratio);
+                ratio_info = g_hash_table_lookup (display_ratio, &rough_ratio);
+                if (ratio_info)
+                {
+                    if (ratio_info->precise)
+                        ratio_text = g_strdup_printf("~%s", ratio_info->desc);
+                    else
+                        ratio_text = g_strdup(ratio_info->desc);
+                }
             }
 
-            if (! ratio_text)
+            if (! ratio_info)
             {
                 guint gcd_tmp = gcd(modes[n].width, modes[n].height);
                 guint format_x = modes[n].width / gcd_tmp;
@@ -724,6 +747,7 @@ display_setting_resolutions_populate (GtkBuilder *builder)
                 name = g_strdup_printf ("%dx%d (%s - %.3f)", modes[n].width,
                                         modes[n].height, ratio_text, ratio);
             }
+            g_free(ratio_text);
             gtk_list_store_append (GTK_LIST_STORE (model), &iter);
             gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                                 COLUMN_COMBO_NAME, name,
@@ -977,7 +1001,7 @@ display_setting_identity_popups_populate (void)
     XfceRatio *i;
     for (i = ratio_table; i->ratio != 0.0; i++)
     {
-        g_hash_table_insert (display_ratio, &i->ratio, (gpointer) i->desc);
+        g_hash_table_insert (display_ratio, &i->ratio, (gpointer) i);
     }
 
     display_popups = g_hash_table_new_full (g_direct_hash,
